@@ -1,0 +1,2808 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="comments">Author: Brock Freeman 費宇翔</property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.6.0.v201606072122</property>
+    <text-property name="title">繳款通知單Bill</text-property>
+    <property name="units">cm</property>
+    <text-property name="displayName">繳款通知單Bill</text-property>
+    <property name="layoutPreference">auto layout</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">Union_Library.rptlibrary</property>
+            <property name="namespace">Union_Library</property>
+        </structure>
+    </list-property>
+    <parameters>
+        <scalar-parameter name="__runtime" id="2122" extends="Union_Library.__runtime"/>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="MySQL(ODA)_BAMS" id="2121"
+ extends="Union_Library.MySQL(ODA)_BAMS">
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://localhost:33060/bams?autoReconnect=true&amp;characterEncoding=UTF8</property>
+            <property name="odaUser">birt</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">WVI5NjNrUGNXTVdRVll3aUJYSGc=</encrypted-property>
+            <property name="odaJndiName">java:comp/env/jdbc/MySqlDB</property>
+            <property name="OdaConnProfileName">MySQL(ODA)_BAMS_prod_localhost</property>
+            <property name="OdaConnProfileStorePath">BAMS_Connection_Profile</property>
+        </oda-data-source>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="BAMS-Docker" id="2124"
+ extends="Union_Library.BAMS-Docker">
+            <text-property name="displayName">BAMS MariaDB on Docker via localhost</text-property>
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://db:3306/bams?characterEncoding=UTF8</property>
+            <property name="odaUser">birt</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">WVI5NjNrUGNXTVdRVll3aUJYSGc=</encrypted-property>
+            <property name="OdaConnProfileName">BAMS-container</property>
+            <property name="OdaConnProfileStorePath">BAMS_Docker-ConnectionProfile</property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="memberBill" id="117">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">changeDate</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">changeDate</text-property>
+                    <text-property name="heading">changeDate</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">idNumber</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">idNumber</text-property>
+                    <text-property name="heading">idNumber</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cardNum</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">cardNum</text-property>
+                    <text-property name="heading">cardNum</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">name</text-property>
+                    <text-property name="heading">name</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">address</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">address</text-property>
+                    <text-property name="heading">address</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">duesYearGH</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">duesYearGH</text-property>
+                    <text-property name="heading">duesYearGH</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">monthNum</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">monthNum</text-property>
+                    <text-property name="heading">monthNum</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">duesHalfName</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">duesHalfName</text-property>
+                    <text-property name="heading">duesHalfName</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">dueDate</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">dueDate</text-property>
+                    <text-property name="heading">dueDate</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">unionDues</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">unionDues</text-property>
+                    <text-property name="heading">unionDues</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">laborIns</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">laborIns</text-property>
+                    <text-property name="heading">laborIns</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">medIns</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">medIns</text-property>
+                    <text-property name="heading">medIns</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">newMemDues</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">newMemDues</text-property>
+                    <text-property name="heading">newMemDues</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">newMemDues2</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">newMemDues2</text-property>
+                    <text-property name="heading">newMemDues2</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">total</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">total</text-property>
+                    <text-property name="heading">total</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">numDeps</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">numDeps</text-property>
+                    <text-property name="heading">numDeps</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">salary</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">salary</text-property>
+                    <text-property name="heading">salary</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">changeDate</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">idNumber</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">cardNum</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">address</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">duesYearGH</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">monthNum</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">duesHalfName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">dueDate</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">unionDues</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">laborIns</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">medIns</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">newMemDues</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">newMemDues2</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">15</property>
+                        <property name="name">total</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">16</property>
+                        <property name="name">numDeps</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">17</property>
+                        <property name="name">salary</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">BAMS-Docker</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">changeDate</property>
+                    <property name="nativeName">changeDate</property>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">idNumber</property>
+                    <property name="nativeName">idNumber</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">cardNum</property>
+                    <property name="nativeName">cardNum</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">name</property>
+                    <property name="nativeName">name</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">address</property>
+                    <property name="nativeName">address</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">duesYearGH</property>
+                    <property name="nativeName">duesYearGH</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">monthNum</property>
+                    <property name="nativeName">monthNum</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">duesHalfName</property>
+                    <property name="nativeName">duesHalfName</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">dueDate</property>
+                    <property name="nativeName">dueDate</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">unionDues</property>
+                    <property name="nativeName">unionDues</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">laborIns</property>
+                    <property name="nativeName">laborIns</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">medIns</property>
+                    <property name="nativeName">medIns</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">newMemDues</property>
+                    <property name="nativeName">newMemDues</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">newMemDues2</property>
+                    <property name="nativeName">newMemDues2</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">15</property>
+                    <property name="name">total</property>
+                    <property name="nativeName">total</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">16</property>
+                    <property name="name">numDeps</property>
+                    <property name="nativeName">numDeps</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">17</property>
+                    <property name="name">salary</property>
+                    <property name="nativeName">salary</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT income.changeDate, members.idNumber, members.cardNum, members.name, members.address,
+duesYear - 1911 AS duesYearGH, 
+IF(monthNum > 0, CONCAT(CAST(monthNum AS CHAR(2)), '月'), '') AS monthNum, 
+duesHalfName.duesHalfName,
+CASE income.duesHalf WHEN 1 
+ THEN CONCAT(CAST(duesYear - 1912 AS CHAR(2)), '年 ', IF(monthNum > 0, CAST(monthNum AS CHAR(2)), '12'), '月 20日')
+ ELSE CONCAT(CAST( duesYear - 1911 AS CHAR(2)), '年 ', IF(monthNum > 0, CAST(monthNum AS CHAR(2)), '6'), '月 20日') 
+  END AS dueDate, 
+income.unionDues,income.laborIns,
+income.medIns, income.newMemDues,
+income.newMemDues2,
+( income.unionDues + income.laborIns + income.medIns + 
+	income.newMemDues + income.newMemDues2 ) AS total, 
+IFNULL(d.numDeps,0) AS numDeps, salDisplay AS salary
+FROM  (income, members, duesHalfName)
+LEFT JOIN unionRatesCurrent uR ON members.salary = uR.salary
+LEFT JOIN 
+(
+SELECT idParent, COUNT(*) numDeps
+FROM dependents
+WHERE inactive IS NULL
+GROUP BY idParent
+) d
+ON members.idNumber = d.idParent  
+WHERE (income.idNumber =  members.idNumber  
+AND  duesHalfName.duesHalf =  income.duesHalf ) 
+AND income.paidDate  IS NULL
+AND income.changeDate IN (CURDATE(), DATE_SUB(CURDATE(), INTERVAL 1 DAY))
+AND members.salaryIncrease = 1
+AND income.monthNum = 0
+AND income.unionDues = 0
+AND income.newMemDues = 0
+AND income.newMemDues2 = 0
+ORDER BY members.cardNum, income.duesYear, income.duesHalf, income.monthNum]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="Outside-Cell--for-Bank-Slip-" id="113">
+            <property name="borderBottomColor">#999999</property>
+            <property name="borderBottomStyle">dotted</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#999999</property>
+            <property name="borderLeftStyle">dotted</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#999999</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#999999</property>
+            <property name="borderTopStyle">dotted</property>
+            <property name="borderTopWidth">1pt</property>
+            <property name="textAlign">right</property>
+            <property name="orphans">0</property>
+            <property name="verticalAlign">middle</property>
+            <property name="widows">0</property>
+            <property name="showIfBlank">true</property>
+            <property name="canShrink">false</property>
+        </style>
+        <style name="style_tableData" id="125">
+            <structure name="numberFormat">
+                <property name="category">Fixed</property>
+                <property name="pattern">#,##0</property>
+            </structure>
+            <property name="whiteSpace">nowrap</property>
+            <property name="canShrink">false</property>
+        </style>
+        <style name="style_textTallSpacing" id="165">
+            <property name="textAlign">right</property>
+            <property name="lineHeight">150%</property>
+            <property name="whiteSpace">nowrap</property>
+            <property name="canShrink">false</property>
+        </style>
+        <style name="style_SmallFont" id="737">
+            <property name="fontSize">7pt</property>
+            <property name="canShrink">true</property>
+        </style>
+        <style name="style_TitleText" id="793">
+            <property name="fontSize">14pt</property>
+            <property name="canShrink">true</property>
+        </style>
+        <style name="style_ExpandedText" id="796">
+            <property name="letterSpacing">4pt</property>
+            <property name="canShrink">false</property>
+        </style>
+        <style name="style_ExpandedSuperText" id="797">
+            <property name="letterSpacing">5.5pt</property>
+            <property name="canShrink">false</property>
+        </style>
+        <style name="style_CompressedText" id="798">
+            <property name="letterSpacing">0.8pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <property name="type">a4</property>
+            <property name="orientation">portrait</property>
+            <property name="topMargin">0.55cm</property>
+            <property name="leftMargin">2.4cm</property>
+            <property name="bottomMargin">0.75cm</property>
+            <property name="rightMargin">0cm</property>
+            <property name="showHeaderOnFirst">false</property>
+            <property name="showFooterOnLast">false</property>
+            <property name="footerHeight">0cm</property>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <table id="131">
+            <property name="textAlign">right</property>
+            <property name="verticalAlign">bottom</property>
+            <property name="pageBreakAfter">avoid</property>
+            <property name="pageBreakBefore">avoid</property>
+            <property name="width">100%</property>
+            <property name="dataSet">memberBill</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">idNumber</property>
+                    <expression name="expression">dataSetRow["idNumber"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cardNum</property>
+                    <expression name="expression">dataSetRow["cardNum"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">name</property>
+                    <expression name="expression">dataSetRow["name"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">duesYearGH</property>
+                    <expression name="expression">dataSetRow["duesYearGH"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">monthNum</property>
+                    <expression name="expression">dataSetRow["monthNum"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">duesHalfName</property>
+                    <expression name="expression">dataSetRow["duesHalfName"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">unionDues + newMemDues2</property>
+                    <expression name="expression">dataSetRow["unionDues"] + row["newMemDues2"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">laborIns</property>
+                    <expression name="expression">dataSetRow["laborIns"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">medIns</property>
+                    <expression name="expression">dataSetRow["medIns"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">newMemDues + 2</property>
+                    <expression name="expression">row["newMemDues"] + row["newMemDues2"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">total</property>
+                    <expression name="expression">dataSetRow["total"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">numDeps</property>
+                    <expression name="expression">dataSetRow["numDeps"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">numDeps Data</property>
+                    <expression name="expression">"(含眷屬" + row["numDeps"] + "人)"</expression>
+                    <property name="dataType">any</property>
+                </structure>
+                <structure>
+                    <property name="name">"繳款期別：自民國 " + row["duesYearGH"] + "年 " + row["duesHalfName"]</property>
+                    <expression name="expression">"繳款期別：自民國 " + row["duesYearGH"] + "年 " + row["duesHalfName"]</expression>
+                    <property name="dataType">any</property>
+                </structure>
+                <structure>
+                    <property name="name">"健保費(眷屬" + row["numDeps"] + "人)"</property>
+                    <expression name="expression">"健保費(眷屬" + row["numDeps"] + "人)"</expression>
+                    <property name="dataType">any</property>
+                </structure>
+                <structure>
+                    <property name="name">newMemDues2</property>
+                    <expression name="expression">dataSetRow["newMemDues2"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">duesPeriod</property>
+                    <expression name="expression">"繳款期別: 民國" + row["duesYearGH"] + "年" + row["duesHalfName"] + row["monthNum"]</expression>
+                    <property name="dataType">any</property>
+                </structure>
+                <structure>
+                    <property name="name">newMemDues</property>
+                    <expression name="expression">dataSetRow["newMemDues"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">unionDues</property>
+                    <expression name="expression">dataSetRow["unionDues"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">dueDate</property>
+                    <expression name="expression">dataSetRow["dueDate"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">duesDateString</property>
+                    <expression name="expression">"繳納截止日: " + row["dueDate"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">address</property>
+                    <text-property name="displayName">address</text-property>
+                    <expression name="expression">dataSetRow["address"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">salary</property>
+                    <text-property name="displayName">salary</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["salary"] + "元"</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <property name="pageBreakInterval">0</property>
+            <column id="142">
+                <property name="style">Outside-Cell--for-Bank-Slip-</property>
+                <property name="marginBottom">0pt</property>
+                <property name="textAlign">left</property>
+                <property name="width">18.6cm</property>
+            </column>
+            <detail>
+                <row id="134">
+                    <property name="style">Outside-Cell--for-Bank-Slip-</property>
+                    <property name="verticalAlign">middle</property>
+                    <property name="pageBreakAfter">avoid</property>
+                    <property name="height">9cm</property>
+                    <cell id="135">
+                        <property name="style">Outside-Cell--for-Bank-Slip-</property>
+                        <property name="textAlign">center</property>
+                        <grid id="13">
+                            <property name="marginTop">0pt</property>
+                            <property name="textAlign">left</property>
+                            <property name="height">8.8cm</property>
+                            <property name="width">17.5cm</property>
+                            <column id="14"/>
+                            <column id="15">
+                                <property name="width">1.2cm</property>
+                            </column>
+                            <column id="16">
+                                <property name="width">4.7cm</property>
+                            </column>
+                            <column id="17">
+                                <property name="width">3.5cm</property>
+                            </column>
+                            <column id="18">
+                                <property name="width">2.2cm</property>
+                            </column>
+                            <column id="19">
+                                <property name="width">0.6cm</property>
+                            </column>
+                            <column id="20">
+                                <property name="width">4.9cm</property>
+                            </column>
+                            <row id="22">
+                                <cell id="23">
+                                    <property name="colSpan">7</property>
+                                    <property name="rowSpan">1</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="799">
+                                        <property name="style">style_TitleText</property>
+                                        <text-property name="text">嘉義縣音樂服務業職業工會   	代收會費單位:嘉義縣新港鄉農會</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                            <row id="31">
+                                <cell id="32">
+                                    <property name="colSpan">1</property>
+                                    <property name="rowSpan">10</property>
+                                </cell>
+                                <cell id="33"/>
+                                <cell id="34">
+                                    <property name="colSpan">1</property>
+                                    <property name="rowSpan">2</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">top</property>
+                                    <text id="114">
+                                        <property name="fontSize">14pt</property>
+                                        <property name="fontWeight">normal</property>
+                                        <property name="textUnderline">none</property>
+                                        <property name="paddingTop">0pt</property>
+                                        <property name="paddingBottom">0pt</property>
+                                        <property name="textAlign">left</property>
+                                        <property name="contentType">auto</property>
+                                        <text-property name="content"><![CDATA[提高薪資繳款單]]></text-property>
+                                    </text>
+                                </cell>
+                                <cell id="2113"/>
+                                <cell id="2109">
+                                    <property name="colSpan">3</property>
+                                    <property name="rowSpan">1</property>
+                                    <text id="2112">
+                                        <property name="textAlign">left</property>
+                                        <property name="contentType">auto</property>
+                                        <text-property name="content"><![CDATA[年     月      日繳費收據]]></text-property>
+                                    </text>
+                                </cell>
+                            </row>
+                            <row id="40">
+                                <property name="height">0.7cm</property>
+                                <cell id="42">
+                                    <property name="colSpan">1</property>
+                                    <property name="rowSpan">9</property>
+                                    <property name="textAlign">left</property>
+                                    <text id="115">
+                                        <property name="textAlign">left</property>
+                                        <property name="contentType">auto</property>
+                                        <text-property name="content"><![CDATA[會
+員
+收
+據
+聯
+|
+交
+付
+繳
+款
+人]]></text-property>
+                                    </text>
+                                </cell>
+                                <cell id="44">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="147">
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">身分證字號</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="45">
+                                    <property name="colSpan">2</property>
+                                    <property name="rowSpan">1</property>
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="156">
+                                        <property name="resultSetColumn">idNumber</property>
+                                    </data>
+                                </cell>
+                                <cell id="47">
+                                    <property name="colSpan">1</property>
+                                    <property name="rowSpan">4</property>
+                                    <property name="style">style_tableData</property>
+                                    <property name="paddingTop">0pt</property>
+                                    <property name="paddingLeft">1pt</property>
+                                    <property name="paddingBottom">0pt</property>
+                                    <grid id="1753">
+                                        <property name="width">100%</property>
+                                        <column id="1754"/>
+                                        <column id="1755"/>
+                                        <row id="1756">
+                                            <cell id="1757">
+                                                <property name="paddingTop">0pt</property>
+                                                <property name="paddingBottom">0pt</property>
+                                                <text name="Bank List" id="2114">
+                                                    <property name="style">style_textTallSpacing</property>
+                                                    <property name="contentType">html</property>
+                                                    <text-property name="content"><![CDATA[本會</br>
+信用部</br>
+月眉辦事處</br>
+大潭辦事處</br>
+崙子辦事處</br>
+安和辦事處</br>]]></text-property>
+                                                </text>
+                                            </cell>
+                                            <cell id="1758">
+                                                <property name="paddingTop">0pt</property>
+                                                <property name="paddingBottom">0pt</property>
+                                                <text id="2108">
+                                                    <property name="style">style_textTallSpacing</property>
+                                                    <property name="contentType">html</property>
+                                                    <text-property name="content"><![CDATA[(05)3748371-2</br>
+(05)3741148-9</br>
+(05)3771369</br>
+(05)3743034</br>
+(05)3760035</br>
+(05)3772038</br>]]></text-property>
+                                                </text>
+                                            </cell>
+                                        </row>
+                                    </grid>
+                                </cell>
+                            </row>
+                            <row id="49">
+                                <property name="height">0.7cm</property>
+                                <cell id="52">
+                                    <property name="style">style_tableData</property>
+                                    <property name="paddingRight">4pt</property>
+                                    <property name="textAlign">left</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="812">
+                                        <property name="resultSetColumn">duesPeriod</property>
+                                    </data>
+                                </cell>
+                                <cell id="53">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="148">
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">會員證號碼</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="54">
+                                    <property name="colSpan">2</property>
+                                    <property name="rowSpan">1</property>
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="157">
+                                        <property name="resultSetColumn">cardNum</property>
+                                    </data>
+                                </cell>
+                            </row>
+                            <row id="58">
+                                <property name="height">0.7cm</property>
+                                <cell id="61">
+                                    <property name="style">style_tableData</property>
+                                    <property name="paddingRight">4pt</property>
+                                    <property name="textAlign">left</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="1728">
+                                        <text-property name="text">繳納截止日:      年     月     日</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="62">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="149">
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">姓   名</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="63">
+                                    <property name="colSpan">2</property>
+                                    <property name="rowSpan">1</property>
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="158">
+                                        <property name="color">blue</property>
+                                        <property name="resultSetColumn">name</property>
+                                    </data>
+                                </cell>
+                            </row>
+                            <row id="67">
+                                <property name="height">0.7cm</property>
+                                <cell id="70">
+                                    <property name="style">style_tableData</property>
+                                    <property name="paddingRight">4pt</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">top</property>
+                                    <label id="1727">
+                                        <text-property name="text">勞/健保投保薪資:</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="71">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="150">
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">經 常 會 費</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="72">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">right</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="815">
+                                        <property name="color">blue</property>
+                                        <property name="resultSetColumn">unionDues</property>
+                                    </data>
+                                </cell>
+                                <cell id="73">
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                            </row>
+                            <row id="801">
+                                <property name="height">0.7cm</property>
+                                <cell id="804">
+                                    <property name="style">style_tableData</property>
+                                    <property name="paddingRight">4pt</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">top</property>
+                                    <data id="2123">
+                                        <property name="resultSetColumn">salary</property>
+                                    </data>
+                                </cell>
+                                <cell id="805">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="810">
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">入　會　費</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="806">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">right</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="811">
+                                        <property name="color">blue</property>
+                                        <property name="resultSetColumn">newMemDues2</property>
+                                    </data>
+                                </cell>
+                                <cell id="807">
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="1750">
+                                    <property name="colSpan">1</property>
+                                    <property name="rowSpan">4</property>
+                                    <property name="style">style_tableData</property>
+                                    <property name="paddingLeft">6pt</property>
+                                    <property name="textAlign">left</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <text id="1747">
+                                        <property name="contentType">html</property>
+                                        <text-property name="content"><![CDATA[如須匯款者,請匯至</br>
+嘉義縣新港鄉農會本會</br>
+戶名:</br>
+嘉義縣音樂服務業職業工會</br>
+匯款帳號:</br>
+00817210517760</br>]]></text-property>
+                                    </text>
+                                </cell>
+                            </row>
+                            <row id="76">
+                                <property name="height">0.7cm</property>
+                                <cell id="79">
+                                    <property name="colSpan">1</property>
+                                    <property name="rowSpan">1</property>
+                                    <property name="style">style_tableData</property>
+                                    <property name="paddingRight">4pt</property>
+                                    <property name="textAlign">left</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <text id="146">
+                                        <property name="contentType">auto</property>
+                                        <text-property name="content"><![CDATA[收款人]]></text-property>
+                                    </text>
+                                </cell>
+                                <cell id="80">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="151">
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">互 助 金</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="81">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">right</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="160">
+                                        <property name="color">blue</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Fixed</property>
+                                            <property name="pattern">#,##0</property>
+                                        </structure>
+                                        <property name="resultSetColumn">newMemDues</property>
+                                    </data>
+                                </cell>
+                                <cell id="82">
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                            </row>
+                            <row id="85">
+                                <property name="height">0.7cm</property>
+                                <cell id="2115">
+                                    <property name="colSpan">1</property>
+                                    <property name="rowSpan">3</property>
+                                    <property name="style">style_tableData</property>
+                                    <property name="paddingRight">4pt</property>
+                                    <property name="textAlign">left</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <text id="2102">
+                                        <property name="contentType">html</property>
+                                        <text-property name="content"><![CDATA[ATM轉帳帳號:</br>
+6170817210517760</br>
+</br>
+* ATM轉帳後,請致電工會報</br>知姓名及匯出帳號,以便銷帳.</br>]]></text-property>
+                                    </text>
+                                </cell>
+                                <cell id="89">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="152">
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">勞　保　費</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="90">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">right</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="168">
+                                        <property name="color">blue</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Unformatted</property>
+                                        </structure>
+                                        <property name="resultSetColumn">laborIns</property>
+                                    </data>
+                                </cell>
+                                <cell id="91">
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                            </row>
+                            <row id="94">
+                                <property name="height">1.1cm</property>
+                                <cell id="98">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="153">
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">健 保 費</text-property>
+                                    </label>
+                                    <data id="154">
+                                        <property name="textAlign">center</property>
+                                        <property name="resultSetColumn">numDeps Data</property>
+                                    </data>
+                                </cell>
+                                <cell id="99">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">right</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="169">
+                                        <property name="color">blue</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Unformatted</property>
+                                        </structure>
+                                        <property name="resultSetColumn">medIns</property>
+                                    </data>
+                                </cell>
+                                <cell id="100">
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                            </row>
+                            <row id="103">
+                                <property name="height">0.7cm</property>
+                                <cell id="107">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="155">
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">合   計</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="108">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">right</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="163">
+                                        <property name="color">blue</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Unformatted</property>
+                                        </structure>
+                                        <property name="resultSetColumn">total</property>
+                                    </data>
+                                </cell>
+                                <cell id="109">
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                </cell>
+                                <cell id="2103">
+                                    <property name="style">style_tableData</property>
+                                    <property name="paddingLeft">6pt</property>
+                                    <property name="textAlign">left</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <text id="145">
+                                        <property name="contentType">auto</property>
+                                        <text-property name="content"><![CDATA[填表人]]></text-property>
+                                    </text>
+                                </cell>
+                            </row>
+                        </grid>
+                    </cell>
+                </row>
+                <row id="136">
+                    <property name="style">Outside-Cell--for-Bank-Slip-</property>
+                    <property name="verticalAlign">middle</property>
+                    <property name="pageBreakAfter">avoid</property>
+                    <property name="pageBreakBefore">avoid</property>
+                    <property name="height">9cm</property>
+                    <cell id="137">
+                        <property name="style">Outside-Cell--for-Bank-Slip-</property>
+                        <property name="textAlign">center</property>
+                        <grid id="170">
+                            <property name="fontSize">12pt</property>
+                            <property name="textAlign">left</property>
+                            <property name="height">8.8cm</property>
+                            <property name="width">17.5cm</property>
+                            <column id="171">
+                                <property name="width">0.75cm</property>
+                            </column>
+                            <column id="172">
+                                <property name="width">2.1cm</property>
+                            </column>
+                            <column id="173">
+                                <property name="width">2.1cm</property>
+                            </column>
+                            <column id="174">
+                                <property name="width">1.3cm</property>
+                            </column>
+                            <column id="175">
+                                <property name="width">3cm</property>
+                            </column>
+                            <column id="176">
+                                <property name="width">3.75cm</property>
+                            </column>
+                            <column id="177">
+                                <property name="width">2.5cm</property>
+                            </column>
+                            <column id="178">
+                                <property name="width">0.5cm</property>
+                            </column>
+                            <column id="179">
+                                <property name="width">0.5cm</property>
+                            </column>
+                            <row id="180">
+                                <property name="height">0.8cm</property>
+                                <cell id="181">
+                                    <property name="colSpan">9</property>
+                                    <property name="rowSpan">1</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="800">
+                                        <property name="style">style_TitleText</property>
+                                        <text-property name="text">嘉 義 縣 音 樂 服 務 業 職 業 工 會</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                            <row id="190">
+                                <property name="height">0.8cm</property>
+                                <cell id="191">
+                                    <property name="colSpan">9</property>
+                                    <property name="rowSpan">1</property>
+                                    <label id="271">
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">  年      月      日 收費收據</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                            <row id="200">
+                                <property name="height">0.8cm</property>
+                                <cell id="201">
+                                    <property name="colSpan">1</property>
+                                    <property name="rowSpan">7</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="272">
+                                        <text-property name="text">
+本
+會
+會
+計
+聯
+</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="202">
+                                    <property name="colSpan">8</property>
+                                    <property name="rowSpan">1</property>
+                                    <data id="273">
+                                        <property name="textAlign">left</property>
+                                        <property name="resultSetColumn">"繳款期別：自民國 " + row["duesYearGH"] + "年 " + row["duesHalfName"]</property>
+                                    </data>
+                                </cell>
+                            </row>
+                            <row id="210">
+                                <property name="height">0.8cm</property>
+                                <cell id="212">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="274">
+                                        <text-property name="text">戶名</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="213">
+                                    <property name="colSpan">3</property>
+                                    <property name="rowSpan">1</property>
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="280">
+                                        <text-property name="text">嘉義縣音樂服務業職業工會</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="216">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="288">
+                                        <text-property name="text">項目</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="217">
+                                    <property name="colSpan">2</property>
+                                    <property name="rowSpan">1</property>
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="294">
+                                        <text-property name="text">金額</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="219">
+                                    <property name="colSpan">1</property>
+                                    <property name="rowSpan">6</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="300">
+                                        <property name="fontSize">10pt</property>
+                                        <text-property name="text">收
+款
+人</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                            <row id="220">
+                                <property name="height">0.8cm</property>
+                                <cell id="222">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="275">
+                                        <text-property name="text">帳號</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="223">
+                                    <property name="colSpan">3</property>
+                                    <property name="rowSpan">1</property>
+                                    <property name="style">style_ExpandedText</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="281">
+                                        <text-property name="text">6170817210517760</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="226">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="289">
+                                        <text-property name="text">經常會費、入會費</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="227">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">right</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="295">
+                                        <property name="color">blue</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Unformatted</property>
+                                        </structure>
+                                        <property name="resultSetColumn">unionDues + newMemDues2</property>
+                                    </data>
+                                </cell>
+                                <cell id="228">
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                </cell>
+                            </row>
+                            <row id="230">
+                                <property name="height">0.8cm</property>
+                                <cell id="232">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="276">
+                                        <text-property name="text">帳號</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="233">
+                                    <property name="colSpan">3</property>
+                                    <property name="rowSpan">1</property>
+                                    <property name="style">style_ExpandedText</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="282">
+                                        <text-property name="text">6170817210517761</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="236">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="290">
+                                        <text-property name="text">互   助   金</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="237">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">right</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="814">
+                                        <property name="color">blue</property>
+                                        <property name="resultSetColumn">newMemDues</property>
+                                    </data>
+                                </cell>
+                                <cell id="238">
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                </cell>
+                            </row>
+                            <row id="240">
+                                <property name="height">0.8cm</property>
+                                <cell id="242">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="277">
+                                        <text-property name="text">帳號</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="243">
+                                    <property name="colSpan">3</property>
+                                    <property name="rowSpan">1</property>
+                                    <property name="style">style_ExpandedText</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="283">
+                                        <text-property name="text">6170817210517762</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="246">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="291">
+                                        <text-property name="text">勞   保   費</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="247">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">right</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="297">
+                                        <property name="color">blue</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Unformatted</property>
+                                        </structure>
+                                        <property name="resultSetColumn">laborIns</property>
+                                    </data>
+                                </cell>
+                                <cell id="248">
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                </cell>
+                            </row>
+                            <row id="250">
+                                <property name="height">0.8cm</property>
+                                <cell id="252">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="278">
+                                        <text-property name="text">帳號</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="253">
+                                    <property name="colSpan">3</property>
+                                    <property name="rowSpan">1</property>
+                                    <property name="style">style_ExpandedText</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="284">
+                                        <text-property name="text">6170817210517763</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="256">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="292">
+                                        <property name="fontSize">10pt</property>
+                                        <property name="resultSetColumn">"健保費(眷屬" + row["numDeps"] + "人)"</property>
+                                    </data>
+                                </cell>
+                                <cell id="257">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">right</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="298">
+                                        <property name="color">blue</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Unformatted</property>
+                                        </structure>
+                                        <property name="resultSetColumn">medIns</property>
+                                    </data>
+                                </cell>
+                                <cell id="258">
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                </cell>
+                            </row>
+                            <row id="260">
+                                <property name="height">0.8cm</property>
+                                <cell id="262">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="279">
+                                        <text-property name="text">會員號碼</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="263">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="285">
+                                        <property name="resultSetColumn">cardNum</property>
+                                    </data>
+                                </cell>
+                                <cell id="264">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">right</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="286">
+                                        <property name="textAlign">right</property>
+                                        <text-property name="text">姓名</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="265">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="287">
+                                        <property name="color">blue</property>
+                                        <property name="resultSetColumn">name</property>
+                                    </data>
+                                </cell>
+                                <cell id="266">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="293">
+                                        <text-property name="text">合   計</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="267">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">right</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="299">
+                                        <property name="color">blue</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Unformatted</property>
+                                        </structure>
+                                        <property name="resultSetColumn">total</property>
+                                    </data>
+                                </cell>
+                                <cell id="268">
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                </cell>
+                            </row>
+                        </grid>
+                    </cell>
+                </row>
+                <row id="138">
+                    <property name="style">Outside-Cell--for-Bank-Slip-</property>
+                    <property name="verticalAlign">middle</property>
+                    <property name="pageBreakAfter">always</property>
+                    <property name="pageBreakBefore">avoid</property>
+                    <property name="height">9cm</property>
+                    <cell id="139">
+                        <property name="style">Outside-Cell--for-Bank-Slip-</property>
+                        <property name="textAlign">center</property>
+                        <grid id="1984">
+                            <property name="fontSize">12pt</property>
+                            <property name="textAlign">left</property>
+                            <property name="height">8.8cm</property>
+                            <property name="width">17.8cm</property>
+                            <column id="1985">
+                                <property name="width">0.75cm</property>
+                            </column>
+                            <column id="1986">
+                                <property name="width">2.1cm</property>
+                            </column>
+                            <column id="1987">
+                                <property name="width">2.1cm</property>
+                            </column>
+                            <column id="1988">
+                                <property name="width">1.3cm</property>
+                            </column>
+                            <column id="1989">
+                                <property name="width">3cm</property>
+                            </column>
+                            <column id="1990">
+                                <property name="width">3.75cm</property>
+                            </column>
+                            <column id="1991">
+                                <property name="width">2.5cm</property>
+                            </column>
+                            <column id="1992">
+                                <property name="width">0.5cm</property>
+                            </column>
+                            <column id="1993">
+                                <property name="width">0.5cm</property>
+                            </column>
+                            <row id="1994">
+                                <property name="height">0.8cm</property>
+                                <cell id="1995">
+                                    <property name="colSpan">9</property>
+                                    <property name="rowSpan">1</property>
+                                    <property name="textAlign">center</property>
+                                    <label id="1996">
+                                        <property name="style">style_TitleText</property>
+                                        <text-property name="text">嘉 義 縣 音 樂 服 務 業 職 業 工 會</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                            <row id="1997">
+                                <property name="height">0.8cm</property>
+                                <cell id="1998">
+                                    <property name="colSpan">9</property>
+                                    <property name="rowSpan">1</property>
+                                    <label id="1999">
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">  年      月      日  代傳票</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                            <row id="2005">
+                                <property name="height">0.8cm</property>
+                                <cell id="2001">
+                                    <property name="colSpan">1</property>
+                                    <property name="rowSpan">6</property>
+                                    <property name="textAlign">center</property>
+                                </cell>
+                                <cell id="2006">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="2007">
+                                        <text-property name="text">戶名</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2008">
+                                    <property name="colSpan">3</property>
+                                    <property name="rowSpan">1</property>
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="2009">
+                                        <text-property name="text">嘉義縣音樂服務業職業工會</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2010">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="2011">
+                                        <text-property name="text">項目</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2012">
+                                    <property name="colSpan">2</property>
+                                    <property name="rowSpan">1</property>
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="2013">
+                                        <text-property name="text">金額</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2014">
+                                    <property name="colSpan">1</property>
+                                    <property name="rowSpan">6</property>
+                                    <property name="textAlign">center</property>
+                                </cell>
+                            </row>
+                            <row id="2016">
+                                <property name="height">0.8cm</property>
+                                <cell id="2017">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="2018">
+                                        <text-property name="text">帳號</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2019">
+                                    <property name="colSpan">3</property>
+                                    <property name="rowSpan">1</property>
+                                    <property name="style">style_ExpandedText</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="2020">
+                                        <text-property name="text">6170817210517760</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2021">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="2022">
+                                        <text-property name="text">經常會費、入會費</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2023">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">right</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="2024">
+                                        <property name="color">blue</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Unformatted</property>
+                                        </structure>
+                                        <property name="resultSetColumn">unionDues + newMemDues2</property>
+                                    </data>
+                                </cell>
+                                <cell id="2025">
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                </cell>
+                            </row>
+                            <row id="2026">
+                                <property name="height">0.8cm</property>
+                                <cell id="2027">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="2028">
+                                        <text-property name="text">帳號</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2029">
+                                    <property name="colSpan">3</property>
+                                    <property name="rowSpan">1</property>
+                                    <property name="style">style_ExpandedText</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="2030">
+                                        <text-property name="text">6170817210517761</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2031">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="2032">
+                                        <text-property name="text">互   助   金</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2033">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">right</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="2034">
+                                        <property name="color">blue</property>
+                                        <property name="resultSetColumn">newMemDues</property>
+                                    </data>
+                                </cell>
+                                <cell id="2035">
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                </cell>
+                            </row>
+                            <row id="2036">
+                                <property name="height">0.8cm</property>
+                                <cell id="2037">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="2038">
+                                        <text-property name="text">帳號</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2039">
+                                    <property name="colSpan">3</property>
+                                    <property name="rowSpan">1</property>
+                                    <property name="style">style_ExpandedText</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="2040">
+                                        <text-property name="text">6170817210517762</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2041">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="2042">
+                                        <text-property name="text">勞   保   費</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2043">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">right</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="2044">
+                                        <property name="color">blue</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Unformatted</property>
+                                        </structure>
+                                        <property name="resultSetColumn">laborIns</property>
+                                    </data>
+                                </cell>
+                                <cell id="2045">
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                </cell>
+                            </row>
+                            <row id="2046">
+                                <property name="height">0.8cm</property>
+                                <cell id="2047">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="2048">
+                                        <text-property name="text">帳號</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2049">
+                                    <property name="colSpan">3</property>
+                                    <property name="rowSpan">1</property>
+                                    <property name="style">style_ExpandedText</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="2050">
+                                        <text-property name="text">6170817210517763</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2051">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="2052">
+                                        <property name="fontSize">10pt</property>
+                                        <property name="resultSetColumn">"健保費(眷屬" + row["numDeps"] + "人)"</property>
+                                    </data>
+                                </cell>
+                                <cell id="2053">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">right</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="2054">
+                                        <property name="color">blue</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Unformatted</property>
+                                        </structure>
+                                        <property name="resultSetColumn">medIns</property>
+                                    </data>
+                                </cell>
+                                <cell id="2055">
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                </cell>
+                            </row>
+                            <row id="2056">
+                                <property name="height">0.8cm</property>
+                                <cell id="2057">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="2058">
+                                        <text-property name="text">會員號碼</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2059">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="2060">
+                                        <property name="resultSetColumn">cardNum</property>
+                                    </data>
+                                </cell>
+                                <cell id="2061">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">right</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="2062">
+                                        <property name="textAlign">right</property>
+                                        <text-property name="text">姓名</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2063">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="2064">
+                                        <property name="color">blue</property>
+                                        <property name="resultSetColumn">name</property>
+                                    </data>
+                                </cell>
+                                <cell id="2065">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">center</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="2066">
+                                        <text-property name="text">合   計</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2067">
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="textAlign">right</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <data id="2068">
+                                        <property name="color">blue</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Unformatted</property>
+                                        </structure>
+                                        <property name="resultSetColumn">total</property>
+                                    </data>
+                                </cell>
+                                <cell id="2069">
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                </cell>
+                            </row>
+                            <row id="2070">
+                                <property name="height">2cm</property>
+                                <cell id="2071">
+                                    <property name="textAlign">center</property>
+                                </cell>
+                                <cell id="2072">
+                                    <property name="colSpan">7</property>
+                                    <property name="rowSpan">1</property>
+                                    <property name="style">style_tableData</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderLeftColor">#000000</property>
+                                    <property name="borderLeftStyle">solid</property>
+                                    <property name="borderLeftWidth">thin</property>
+                                    <property name="borderRightColor">#000000</property>
+                                    <property name="borderRightStyle">solid</property>
+                                    <property name="borderRightWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <property name="verticalAlign">middle</property>
+                                    <label id="2080">
+                                        <text-property name="text">經收人蓋章</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2079">
+                                    <property name="textAlign">center</property>
+                                </cell>
+                            </row>
+                        </grid>
+                    </cell>
+                </row>
+                <row id="2081">
+                    <property name="verticalAlign">middle</property>
+                    <property name="pageBreakBefore">always</property>
+                    <property name="height">9.6cm</property>
+                    <cell id="2082">
+                        <property name="borderBottomColor">#999999</property>
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderBottomWidth">1pt</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderRightStyle">none</property>
+                        <property name="borderRightWidth">1pt</property>
+                        <property name="borderTopStyle">none</property>
+                        <property name="textAlign">center</property>
+                        <text id="2125">
+                            <property name="contentType">auto</property>
+                            <text-property name="content"><![CDATA[   ]]></text-property>
+                        </text>
+                    </cell>
+                </row>
+                <row id="2083">
+                    <property name="verticalAlign">top</property>
+                    <property name="pageBreakAfter">always</property>
+                    <property name="height">9cm</property>
+                    <cell id="2084">
+                        <property name="borderBottomStyle">none</property>
+                        <property name="borderBottomWidth">0pt</property>
+                        <property name="borderLeftStyle">none</property>
+                        <property name="borderLeftWidth">1pt</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">none</property>
+                        <property name="textAlign">center</property>
+                        <property name="verticalAlign">top</property>
+                        <grid id="2085">
+                            <property name="verticalAlign">middle</property>
+                            <property name="width">100%</property>
+                            <column id="2086">
+                                <property name="width">4cm</property>
+                            </column>
+                            <column id="2087"/>
+                            <row id="2088">
+                                <property name="height">3cm</property>
+                                <cell id="2089">
+                                    <property name="colSpan">2</property>
+                                    <property name="rowSpan">1</property>
+                                    <property name="paddingLeft">2cm</property>
+                                    <label id="2094">
+                                        <property name="fontSize">14pt</property>
+                                        <property name="textAlign">left</property>
+                                        <text-property name="text">嘉義縣音樂服務業職業工會
+616-93  嘉義縣新港鄉宮前村登雲路50-1號
+電話: 05 374 0136</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                            <row id="2091">
+                                <cell id="2092"/>
+                                <cell id="2093">
+                                    <label id="2097">
+                                        <property name="fontSize">12pt</property>
+                                        <property name="textAlign">left</property>
+                                        <text-property name="text">收件人:</text-property>
+                                    </label>
+                                    <data id="2099">
+                                        <property name="fontSize">14pt</property>
+                                        <property name="textAlign">left</property>
+                                        <property name="resultSetColumn">cardNum</property>
+                                    </data>
+                                    <data id="2098">
+                                        <property name="fontSize">14pt</property>
+                                        <property name="textAlign">left</property>
+                                        <property name="resultSetColumn">name</property>
+                                    </data>
+                                    <data id="2095">
+                                        <property name="fontSize">14pt</property>
+                                        <property name="textAlign">left</property>
+                                        <property name="resultSetColumn">address</property>
+                                    </data>
+                                </cell>
+                            </row>
+                            <row id="2117">
+                                <cell id="2118">
+                                    <label id="2120">
+                                        <property name="fontSize">18pt</property>
+                                        <text-property name="text">印刷品</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="2119"/>
+                            </row>
+                        </grid>
+                    </cell>
+                </row>
+            </detail>
+        </table>
+    </body>
+</report>

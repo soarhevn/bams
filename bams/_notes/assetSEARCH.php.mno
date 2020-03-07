@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsAssetAccounts" value="name:accountID;datatype:int,name:accountName;datatype:string" />
+	<infoitem key="UD_rsAssetBalances" value="name:accountName;datatype:string,name:balance;datatype:string" />
+</info>

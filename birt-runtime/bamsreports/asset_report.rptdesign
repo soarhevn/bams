@@ -1,0 +1,1286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="comments">Author: Brock Freeman 費宇翔</property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.6.0.v201606072122</property>
+    <text-property name="title">資產報表</text-property>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">odaDriverClass</property>
+            <property name="id">132</property>
+        </structure>
+        <structure>
+            <property name="name">odaURL</property>
+            <property name="id">132</property>
+        </structure>
+        <structure>
+            <property name="name">odaUser</property>
+            <property name="id">132</property>
+        </structure>
+        <structure>
+            <property name="name">odaAutoCommit</property>
+            <property name="id">132</property>
+        </structure>
+        <structure>
+            <property name="name">odaIsolationMode</property>
+            <property name="id">132</property>
+        </structure>
+        <structure>
+            <property name="name">odaPassword</property>
+            <property name="id">132</property>
+        </structure>
+        <structure>
+            <property name="name">odaJndiName</property>
+            <property name="id">132</property>
+        </structure>
+        <structure>
+            <property name="name">OdaConnProfileName</property>
+            <property name="id">132</property>
+        </structure>
+        <structure>
+            <property name="name">OdaConnProfileStorePath</property>
+            <property name="id">132</property>
+        </structure>
+    </list-property>
+    <property name="units">cm</property>
+    <property name="theme">Union_Library.Table_Standard</property>
+    <property name="layoutPreference">auto layout</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">Union_Library.rptlibrary</property>
+            <property name="namespace">Union_Library</property>
+        </structure>
+    </list-property>
+    <parameters>
+        <scalar-parameter name="reportDate" id="8">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">107-01-01</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="accountID" id="9">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">45</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="__runtime" id="131" extends="Union_Library.__runtime"/>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="MySQL(ODA)_BAMS" id="130"
+ extends="Union_Library.MySQL(ODA)_BAMS">
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://localhost:33060/bams?autoReconnect=true&amp;characterEncoding=UTF8</property>
+            <property name="odaUser">birt</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">WVI5NjNrUGNXTVdRVll3aUJYSGc=</encrypted-property>
+            <property name="odaJndiName">java:comp/env/jdbc/MySqlDB</property>
+            <property name="OdaConnProfileName">MySQL(ODA)_BAMS_prod_localhost</property>
+            <property name="OdaConnProfileStorePath">BAMS_Connection_Profile</property>
+        </oda-data-source>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="BAMS-Docker" id="132"
+ extends="Union_Library.BAMS-Docker">
+            <text-property name="displayName">BAMS MariaDB on Docker via localhost</text-property>
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://db:3306/bams?characterEncoding=UTF8</property>
+            <property name="odaUser">birt</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">WVI5NjNrUGNXTVdRVll3aUJYSGc=</encrypted-property>
+            <property name="OdaConnProfileName">BAMS-container</property>
+            <property name="OdaConnProfileStorePath">BAMS_Docker-ConnectionProfile</property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="reportInfo" id="10">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">accountID</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">accountID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">accountName</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">accountName</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">reportMonth</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">reportMonth</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">reportYear</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">reportYear</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">param_1</property>
+                    <property name="paramName">reportDate</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">1</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                </structure>
+                <structure>
+                    <property name="name">param_2</property>
+                    <property name="paramName">reportDate</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">2</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_3</property>
+                    <property name="paramName">accountID</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">3</property>
+                    <property name="isOptional">false</property>
+                    <property name="isInput">true</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">accountID</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">accountName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">reportMonth</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">reportYear</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">BAMS-Docker</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">accountID</property>
+                    <property name="nativeName">accountID</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">accountName</property>
+                    <property name="nativeName">accountName</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">reportMonth</property>
+                    <property name="nativeName">reportMonth</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">reportYear</property>
+                    <property name="nativeName">reportYear</property>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT accountID, accountName,
+MONTH(?) AS reportMonth,
+SUBSTRING_INDEX(?, '-', 1) AS reportYear 
+FROM accountNames 
+WHERE accountID = ?]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>1.0</Version>
+  <design:DataSetParameters>
+    <design:parameterDefinitions>
+      <design:inOutMode>In</design:inOutMode>
+      <design:attributes>
+        <design:name></design:name>
+        <design:position>1</design:position>
+        <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+        <design:nullability>Nullable</design:nullability>
+        <design:uiHints/>
+      </design:attributes>
+      <design:inputAttributes>
+        <design:elementAttributes>
+          <design:optional>true</design:optional>
+          <design:masksValue>false</design:masksValue>
+          <design:uiHints>
+            <design:promptStyle>TextField</design:promptStyle>
+          </design:uiHints>
+        </design:elementAttributes>
+      </design:inputAttributes>
+    </design:parameterDefinitions>
+    <design:parameterDefinitions>
+      <design:inOutMode>In</design:inOutMode>
+      <design:attributes>
+        <design:name></design:name>
+        <design:position>2</design:position>
+        <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+        <design:nullability>Nullable</design:nullability>
+        <design:uiHints/>
+      </design:attributes>
+      <design:inputAttributes>
+        <design:elementAttributes>
+          <design:optional>true</design:optional>
+          <design:masksValue>false</design:masksValue>
+          <design:uiHints>
+            <design:promptStyle>TextField</design:promptStyle>
+          </design:uiHints>
+        </design:elementAttributes>
+      </design:inputAttributes>
+    </design:parameterDefinitions>
+    <design:parameterDefinitions>
+      <design:inOutMode>In</design:inOutMode>
+      <design:attributes>
+        <design:name></design:name>
+        <design:position>3</design:position>
+        <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+        <design:nullability>Unknown</design:nullability>
+        <design:uiHints/>
+      </design:attributes>
+      <design:inputAttributes>
+        <design:elementAttributes>
+          <design:optional>false</design:optional>
+          <design:masksValue>false</design:masksValue>
+          <design:uiHints>
+            <design:promptStyle>TextField</design:promptStyle>
+          </design:uiHints>
+        </design:elementAttributes>
+      </design:inputAttributes>
+    </design:parameterDefinitions>
+  </design:DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>accountID</design:name>
+            <design:position>1</design:position>
+            <design:nativeDataTypeCode>5</design:nativeDataTypeCode>
+            <design:precision>6</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>accountID</design:label>
+            <design:formattingHints>
+              <design:displaySize>6</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>accountName</design:name>
+            <design:position>2</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>accountName</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>reportMonth</design:name>
+            <design:position>3</design:position>
+            <design:nativeDataTypeCode>-5</design:nativeDataTypeCode>
+            <design:precision>2</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>reportMonth</design:label>
+            <design:formattingHints>
+              <design:displaySize>2</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>reportYear</design:name>
+            <design:position>4</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>0</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>reportYear</design:label>
+            <design:formattingHints>
+              <design:displaySize>0</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+    </design:resultSetDefinitions>
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>accountID</design:name>
+            <design:position>1</design:position>
+            <design:nativeDataTypeCode>5</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>accountName</design:name>
+            <design:position>2</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>reportMonth</design:name>
+            <design:position>3</design:position>
+            <design:nativeDataTypeCode>-5</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>reportYear</design:name>
+            <design:position>4</design:position>
+            <design:nativeDataTypeCode>8</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="assetData" id="79">
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">param_1</property>
+                    <property name="paramName">reportDate</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_2</property>
+                    <property name="paramName">reportDate</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_3</property>
+                    <property name="paramName">reportDate</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">3</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_4</property>
+                    <property name="paramName">reportDate</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">4</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_5</property>
+                    <property name="paramName">accountID</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">5</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_6</property>
+                    <property name="paramName">reportDate</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">6</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_7</property>
+                    <property name="paramName">reportDate</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">7</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_8</property>
+                    <property name="paramName">reportDate</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">8</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_9</property>
+                    <property name="paramName">accountID</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">9</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_10</property>
+                    <property name="paramName">reportDate</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">10</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_11</property>
+                    <property name="paramName">reportDate</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">11</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_12</property>
+                    <property name="paramName">accountID</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">12</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_13</property>
+                    <property name="paramName">reportDate</property>
+                    <property name="dataType">string</property>
+                    <property name="position">13</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_14</property>
+                    <property name="paramName">reportDate</property>
+                    <property name="dataType">string</property>
+                    <property name="position">14</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">idMaster</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">transDate</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">debit</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">credit</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">lineTotal</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">accountID2</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">accountName2</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">notes</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">dailyTransCount</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">BAMS-Docker</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">idMaster</property>
+                    <property name="nativeName">idMaster</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">transDate</property>
+                    <property name="nativeName">transDate</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">debit</property>
+                    <property name="nativeName">debit</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">credit</property>
+                    <property name="nativeName">credit</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">lineTotal</property>
+                    <property name="nativeName">lineTotal</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">accountID2</property>
+                    <property name="nativeName">accountID2</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">accountName2</property>
+                    <property name="nativeName">accountName2</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">notes</property>
+                    <property name="nativeName">notes</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">dailyTransCount</property>
+                    <property name="nativeName">dailyTransCount</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT idMaster, CAST(TRIM(LEADING '0' FROM (DATE_SUB(transDate, INTERVAL 1911 YEAR))) AS CHAR) AS transDate, 
+IF(trans.debit > 0, trans.debit, NULL) AS debit, 
+IF(trans.credit > 0, trans.credit, NULL) AS credit, lineTotal,
+accountID2, CASE WHEN idMaster = -1 THEN '早先平衡' 
+	WHEN dailyTransCount IS NULL THEN CONCAT(aN2.accountName, ' - ', aT2.atName)
+	ELSE '日小記' END AS accountName2, 
+notes, dailyTransCount
+FROM 
+( /* get transactions out and match to transMaster for single line with both debit and credit */
+
+( /* get total of debits and credit for previous trans */
+SELECT -1 AS idMaster, NULL AS transDate, NULL AS medIdNum, 
+CONCAT('早先總額 到', TRIM(LEADING '0' FROM (? - INTERVAL 1 DAY))) AS notes, 
+IFNULL(SUM(debit),0) AS debit, IFNULL(SUM(credit),0) AS credit, 
+IFNULL(SUM(debit),0) - IFNULL(SUM(credit),0) AS lineTotal, NULL AS id1, NULL AS id2, NULL AS accountID2, NULL AS marker, 
+DATE_SUB(REPLACE(?, (SUBSTRING_INDEX(?, '-', 1)), ((SUBSTRING_INDEX(?, '-', 1)) + 1911)), INTERVAL 1 DAY) AS changeDate,
+NULL AS dailyTransCount
+FROM transactionsMaster
+LEFT JOIN transactions USING (idMaster)
+WHERE accountID = ?
+AND transdate < REPLACE(?, (SUBSTRING_INDEX(?, '-', 1)), ((SUBSTRING_INDEX(?, '-', 1)) + 1911))
+)
+UNION
+( /* trans + line totals for searched trans */
+SELECT DISTINCT idMaster, transDate, memIdNum, notes, 
+t1.debit, t1.credit, ( IFNULL(t1.debit,0) - IFNULL(t1.credit,0) ) AS lineTotal,
+t1.id AS id1, t2.id AS id2, 
+t2.accountID AS accountID2, marker, changeDate, NULL AS dailyTransCount
+FROM transactionsMaster
+LEFT JOIN transactions t1 USING (idMaster)
+LEFT JOIN transactions t2 USING (idMaster)
+WHERE t1.accountID != t2.accountID
+AND t1.accountID = ?
+AND MONTH(transDate) = MONTH(?)
+AND YEAR(transDate) = ((SUBSTRING_INDEX(?, '-', 1)) + 1911)
+)
+UNION
+( /* get daily subtotals */
+SELECT DISTINCT NULL AS idMaster, transDate, NULL AS memIdNum, NULL AS notes,
+IFNULL(SUM(t1.debit),0) AS debitDailyTotal, IFNULL(SUM(t1.credit),0) AS creditDailyTotal, 
+0 AS dailyTotal,
+NULL AS id1, NULL AS id2, NULL AS accountID2, NULL AS marker, NULL AS changeDate, 
+COUNT(idMaster) AS dailyTransCount
+FROM transactionsMaster
+LEFT JOIN transactions t1 USING (idMaster)
+LEFT JOIN transactions t2 USING (idMaster)
+WHERE t1.accountID != t2.accountID
+AND t1.accountID = ?
+AND MONTH(transDate) = MONTH(?)
+AND YEAR(transDate) = ((SUBSTRING_INDEX(?, '-', 1)) + 1911)
+GROUP BY transDate
+)
+) trans 
+  /* end tranactions section */
+  /* start joins for account names + account types */
+LEFT JOIN accountNames aN2 ON accountID2 = aN2.accountID
+LEFT JOIN accountType aT2 ON aN2.accountType = aT2.acctTypeID 
+ORDER BY transDate, dailyTransCount, idMaster ASC]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>4</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>5</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>6</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>7</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>8</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>9</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>10</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>11</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>idMaster</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>-5</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>idMaster</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>transDate</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>29</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>transDate</design:label>
+            <design:formattingHints>
+              <design:displaySize>29</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>debit</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>42</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>debit</design:label>
+            <design:formattingHints>
+              <design:displaySize>44</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>credit</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>42</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>credit</design:label>
+            <design:formattingHints>
+              <design:displaySize>44</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>accountID2</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>5</design:nativeDataTypeCode>
+            <design:precision>6</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>accountID2</design:label>
+            <design:formattingHints>
+              <design:displaySize>6</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>accountName2</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>73</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>accountName2</design:label>
+            <design:formattingHints>
+              <design:displaySize>73</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>notes</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>notes</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <page-setup>
+        <simple-master-page name="A4 MasterPage" id="82" extends="Union_Library.A4 MasterPage">
+            <overridden-values>
+                <ref-entry baseId="32" name="NewLabel" id="32"/>
+                <ref-entry baseId="34" name="NewGrid" id="34"/>
+                <ref-entry baseId="35" id="35"/>
+                <ref-entry baseId="36" id="36"/>
+                <ref-entry baseId="37" id="37"/>
+                <ref-entry baseId="38" id="122"/>
+                <ref-entry baseId="39" id="123"/>
+                <ref-entry baseId="42" name="NewLabel1" id="124"/>
+                <ref-entry baseId="40" id="125"/>
+                <ref-entry baseId="43" name="NewLabel2" id="126"/>
+                <ref-entry baseId="41" id="127"/>
+                <ref-entry baseId="44" name="NewLabel3" id="128"/>
+            </overridden-values>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <data id="11">
+            <property name="fontSize">16pt</property>
+            <property name="textAlign">center</property>
+            <property name="dataSet">reportInfo</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">accountID</property>
+                    <expression name="expression">dataSetRow["accountID"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">accountName</property>
+                    <expression name="expression">dataSetRow["accountName"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">reportMonth</property>
+                    <expression name="expression">dataSetRow["reportMonth"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">reportYear</property>
+                    <expression name="expression">dataSetRow["reportYear"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">row["reportYear"] + "年" + row["reportMonth"] + "月" + row["accountName"]</property>
+                    <expression name="expression">row["reportYear"] + "年" + row["reportMonth"] + "月" + row["accountName"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <property name="resultSetColumn">row["reportYear"] + "年" + row["reportMonth"] + "月" + row["accountName"]</property>
+        </data>
+        <table id="38">
+            <property name="width">100%</property>
+            <property name="dataSet">assetData</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">idMaster</property>
+                    <expression name="expression">dataSetRow["idMaster"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">transDate</property>
+                    <expression name="expression">dataSetRow["transDate"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">debit</property>
+                    <expression name="expression">dataSetRow["debit"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">credit</property>
+                    <expression name="expression">dataSetRow["credit"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">runTotal</property>
+                    <expression name="expression">Total.runningSum(dataSetRow["lineTotal"])</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">accountName2</property>
+                    <expression name="expression">dataSetRow["accountName2"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">notes</property>
+                    <expression name="expression">dataSetRow["notes"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Total.sum(row["debit"])</property>
+                    <expression name="expression">Total.sum(row["debit"])</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">Total.sum(row["credit"])</property>
+                    <expression name="expression">Total.sum(row["credit"])</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <property name="pageBreakInterval">0</property>
+            <column id="57">
+                <property name="width">2cm</property>
+            </column>
+            <column id="58">
+                <property name="width">8cm</property>
+            </column>
+            <column id="59">
+                <property name="width">2.5cm</property>
+            </column>
+            <column id="60">
+                <property name="width">2.5cm</property>
+            </column>
+            <column id="61">
+                <property name="width">4cm</property>
+            </column>
+            <header>
+                <row id="39">
+                    <property name="style">style_tableHeader</property>
+                    <cell id="40">
+                        <property name="style">style_tableHeader</property>
+                        <label id="62">
+                            <text-property name="text">日期</text-property>
+                        </label>
+                    </cell>
+                    <cell id="41">
+                        <property name="style">style_tableHeader</property>
+                        <label id="64">
+                            <text-property name="text">科目 / 摘要</text-property>
+                        </label>
+                    </cell>
+                    <cell id="42">
+                        <property name="style">style_tableHeader</property>
+                        <label id="67">
+                            <text-property name="text">借</text-property>
+                        </label>
+                    </cell>
+                    <cell id="43">
+                        <property name="style">style_tableHeader</property>
+                        <label id="76">
+                            <text-property name="text">貸</text-property>
+                        </label>
+                    </cell>
+                    <cell id="44">
+                        <property name="style">style_tableHeader</property>
+                        <label id="80">
+                            <text-property name="text">結餘</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="45">
+                    <property name="style">style_tableDetail</property>
+                    <list-property name="highlightRules">
+                        <structure>
+                            <property name="operator">is-null</property>
+                            <property name="fontStyle">italic</property>
+                            <property name="fontWeight">bold</property>
+                            <expression name="testExpr">row["idMaster"]</expression>
+                        </structure>
+                    </list-property>
+                    <cell id="46">
+                        <property name="style">style_tableDetail</property>
+                        <data id="63">
+                            <structure name="dateTimeFormat">
+                                <property name="category">Short Date</property>
+                                <property name="pattern">Short Date</property>
+                            </structure>
+                            <property name="resultSetColumn">transDate</property>
+                        </data>
+                    </cell>
+                    <cell id="47">
+                        <property name="style">style_tableDetail</property>
+                        <data id="65">
+                            <property name="pageBreakInside">auto</property>
+                            <property name="showIfBlank">true</property>
+                            <property name="canShrink">false</property>
+                            <property name="resultSetColumn">accountName2</property>
+                        </data>
+                        <data id="66">
+                            <property name="resultSetColumn">notes</property>
+                        </data>
+                    </cell>
+                    <cell id="48">
+                        <property name="style">style_tableDetail</property>
+                        <property name="paddingRight">10pt</property>
+                        <property name="textAlign">right</property>
+                        <data id="68">
+                            <structure name="numberFormat">
+                                <property name="category">Fixed</property>
+                                <property name="pattern">#,##0</property>
+                            </structure>
+                            <property name="resultSetColumn">debit</property>
+                        </data>
+                    </cell>
+                    <cell id="49">
+                        <property name="style">style_tableDetail</property>
+                        <property name="paddingRight">10pt</property>
+                        <property name="textAlign">right</property>
+                        <data id="77">
+                            <structure name="numberFormat">
+                                <property name="category">Fixed</property>
+                                <property name="pattern">#,##0</property>
+                            </structure>
+                            <property name="resultSetColumn">credit</property>
+                        </data>
+                    </cell>
+                    <cell id="50">
+                        <property name="style">style_tableDetail</property>
+                        <property name="paddingRight">10pt</property>
+                        <data id="81">
+                            <property name="fontWeight">bold</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$#,##0</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">runTotal</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="51">
+                    <cell id="52">
+                        <property name="style">style_body</property>
+                    </cell>
+                    <cell id="53">
+                        <property name="style">style_body</property>
+                    </cell>
+                    <cell id="54">
+                        <property name="style">style_body</property>
+                        <property name="paddingRight">10pt</property>
+                        <property name="textAlign">right</property>
+                    </cell>
+                    <cell id="55">
+                        <property name="style">style_body</property>
+                        <property name="paddingRight">10pt</property>
+                        <property name="textAlign">right</property>
+                    </cell>
+                    <cell id="56">
+                        <property name="style">style_body</property>
+                    </cell>
+                </row>
+                <row id="69">
+                    <cell id="70">
+                        <property name="style">style_body</property>
+                    </cell>
+                    <cell id="71">
+                        <property name="style">style_body</property>
+                    </cell>
+                    <cell id="72">
+                        <property name="style">style_body</property>
+                        <property name="borderBottomColor">#000000</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderTopColor">#000000</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <property name="paddingRight">10pt</property>
+                        <property name="textAlign">right</property>
+                        <data id="75">
+                            <property name="resultSetColumn">Total.sum(row["debit"])</property>
+                        </data>
+                    </cell>
+                    <cell id="73">
+                        <property name="style">style_body</property>
+                        <property name="borderBottomColor">#000000</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderTopColor">#000000</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <property name="paddingRight">10pt</property>
+                        <property name="textAlign">right</property>
+                        <data id="78">
+                            <property name="resultSetColumn">Total.sum(row["credit"])</property>
+                        </data>
+                    </cell>
+                    <cell id="74">
+                        <property name="style">style_body</property>
+                    </cell>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>

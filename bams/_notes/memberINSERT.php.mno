@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsHandicap" value="name:handicap;datatype:int,name:handiName;datatype:string" />
+	<infoitem key="UD_rsSalaryINFO" value="name:salary;datatype:unknown" />
+	<infoitem key="UD_rs_referrer" value="name:idNumber;datatype:string,name:name;datatype:string" />
+</info>

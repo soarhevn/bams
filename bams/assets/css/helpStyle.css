@@ -1,0 +1,73 @@
+/* CSS Document for Help Pages */
+
+body{
+	font-family: 'Lucida Grande', Geneva, Verdana, Arial, Helvetica, sans-serif;
+	color: #333333;
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+	line-height: normal;
+	text-align: justify;
+	text-indent: 1em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Myriad Apple', 'Lucida Grande', Geneva, Verdana, Arial, Helvetica, sans-serif;
+	padding: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 6px;
+	margin-left: 0px;
+	text-align: left;
+	text-indent: 0px;
+}
+
+h1{
+ font-size: 18pt;
+ color: #334d55;
+}
+
+h2{
+ font-size: 16pt;
+ color: #006699;
+}
+
+h3{
+ font-size: 14pt;
+ color: #0000FF;
+}
+
+h4{
+ font-size: 110%;
+ font-weight: bold;
+ color: #000000;
+}
+
+h5{
+ font-size: 100%;
+ color: #334d55;
+}
+
+ul{
+ list-style-type: square;
+}
+
+ul ul{
+ list-style-type: disc;
+}
+
+ul ul ul{
+ list-style-type: none;
+}
+
+label{
+	color: #333333;
+	font-size: 125%;
+}
+p {
+	margin-bottom: 7px;
+	margin-top: 0px;
+}
+.red {
+	color: #FF0000;
+}

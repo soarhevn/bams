@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rs_reportsInfo" value="name:id;datatype:int,name:name;datatype:string,name:nameEN;datatype:string,name:group;datatype:int,name:year;datatype:int,name:month;datatype:int" />
+	<infoitem key="UD_rs_reporting" value="name:id;datatype:int,name:name;datatype:string,name:groupID;datatype:int,name:yearR;datatype:int,name:monthR;datatype:int,name:typeR;datatype:int" />
+	<infoitem key="UD_rs_GroupNames" value="name:accGrpID;datatype:int,name:accGrpName;datatype:string" />
+	<infoitem key="UD_textBlocks" value="name:id;datatype:int,name:description;datatype:string" />
+	<infoitem key="UD_rs_textBlocks" value="name:id;datatype:int,name:descript_zh;datatype:string" />
+</info>

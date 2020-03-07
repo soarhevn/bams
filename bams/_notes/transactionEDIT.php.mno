@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsDuesHalf" value="name:duesHalf;datatype:int,name:duesHalfName;datatype:string" />
+	<infoitem key="UD_rsAssetAccounts" value="name:accountID;datatype:int,name:accountName;datatype:string,name:accountType;datatype:int,name:description;datatype:string,name:inactive;datatype:int,name:autoPay;datatype:int,name:xAccountID;datatype:int" />
+</info>

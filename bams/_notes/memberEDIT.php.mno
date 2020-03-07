@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsHandicap" value="name:handicap;datatype:int,name:handiName;datatype:string" />
+	<infoitem key="UD_rsSalaryInfo" value="name:salary;datatype:unknown" />
+</info>

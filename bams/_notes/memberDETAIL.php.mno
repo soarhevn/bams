@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsDetailDependents" value="name:idNumber;datatype:string,name:idParent;datatype:string,name:name;datatype:string,name:cardNum;datatype:string,name:birthday;datatype:string,name:handiName;datatype:string,name:insureDate;datatype:string,name:inactive;datatype:string,name:memberDate;datatype:string" />
+	<infoitem key="UD_rsMemberTransactions" value="name:idMaster;datatype:int,name:transDate;datatype:date,name:changeDate;datatype:date,name:memIdNum;datatype:string,name:notes;datatype:string,name:marker;datatype:int" />
+	<infoitem key="UD_rsDuesHalf" value="name:duesHalf;datatype:int,name:duesHalfName;datatype:string" />
+	<infoitem key="UD_rsAssetAccounts" value="name:accountID;datatype:int,name:accountName;datatype:string,name:accountType;datatype:int,name:description;datatype:string,name:inactive;datatype:int,name:autoPay;datatype:int,name:xAccountID;datatype:int" />
+	<infoitem key="UD_rs_GroupNames" value="name:accGrpID;datatype:int,name:accGrpName;datatype:string" />
+</info>

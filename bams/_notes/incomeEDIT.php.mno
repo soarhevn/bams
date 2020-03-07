@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsDuesHalf" value="name:duesHalf;datatype:int,name:duesHalfName;datatype:string" />
+	<infoitem key="UD_rsAssetAccounts" value="name:accountID;datatype:int,name:accountName;datatype:string,name:accountType;datatype:int,name:inactive;datatype:int,name:autoPay;datatype:int,name:xAccountID;datatype:int" />
+	<infoitem key="UD_rsAccountType" value="name:acctTypeID;datatype:int,name:atName;datatype:string,name:atNameEn;datatype:string,name:debit;datatype:int" />
+	<infoitem key="UD_rsXAccountNames" value="name:accountID;datatype:int,name:accountName;datatype:string,name:atName;datatype:string" />
+	<infoitem key="UD_rsaccountNames" value="name:accountID;datatype:int,name:accountName;datatype:string,name:accountType;datatype:int,name:description;datatype:string,name:inactive;datatype:int,name:autoPay;datatype:int,name:xAccountID;datatype:int" />
+	<infoitem key="UD_rsAccountGroups" value="name:accGrpID;datatype:int,name:accGrpName;datatype:string,name:description;datatype:string,name:inactive;datatype:int" />
+</info>

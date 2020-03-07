@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsAccounts" value="name:accountName;datatype:string,name:description;datatype:string,name:atName;datatype:string" />
+</info>

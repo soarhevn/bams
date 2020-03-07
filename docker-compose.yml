@@ -1,0 +1,116 @@
+version: "3.4"
+
+networks:
+  # assumes Sakura stack is using "sakura" as the stack name
+  sakura_webnet:
+    external: true
+    # comment out the above external line if using this stack as standalone
+
+volumes:
+  # this volume was created outside of this stack, so it's external
+  bamsdb:
+     external: true
+
+services:
+  web-bams:
+    image: nginx:alpine
+    depends_on:
+      - php
+      - birt
+    environment:
+      - VIRTUAL_HOST=bams.sakuratechnology.com
+      - LETSENCRYPT_HOST=bams.sakuratechnology.com
+      - LETSENCRYPT_EMAIL=webmaster@sakuratechnology.com
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    volumes:
+      # Nginx Conf
+      - type: bind
+        source: nginx.bams.sakuratechnology.com.conf
+        target: /etc/nginx/conf.d/bams.sakuratechnology.com.conf
+      # Virtual Hosts
+      - type: bind
+        source: bams
+        target: /usr/share/nginx/html/bams.sakuratechnology.com
+    # Uncomment the below port mapping to enable this stack as standalone
+    # ports:
+    #   - target: 80
+    #     published: 8088
+    #     protocol: tcp
+    #     mode: host
+    networks:
+      - sakura_webnet
+
+  db:
+    image: mariadb
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - type: volume
+        # perm db storage volume
+        source: bamsdb
+        target: /var/lib/mysql
+    ports:
+      - target: 3306
+        published: 3306
+        protocol: tcp
+        mode: host
+    networks:
+      - sakura_webnet
+
+  php:
+    image: ums/php:fpm-alpine-mysqli
+    depends_on:
+      - db
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - type: bind
+        source: ./bams
+        target: /var/www/html
+    networks:
+      - sakura_webnet
+
+  birt:
+    image: ums/birt
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - type: bind
+        source: ./birt-runtime/bamsreports
+        target: /usr/local/tomcat/webapps/birt/bamsreports
+    # ports:
+    #   - 8080:8080
+    networks:
+      - sakura_webnet
+
+  s3backup:
+    image: schickling/mysql-backup-s3
+    depends_on:
+      - db
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    environment:
+      - S3_ACCESS_KEY_ID=youraccesskeyid
+      - S3_SECRET_ACCESS_KEY=yoursecret
+      - S3_BUCKET=yourbucket
+      - S3_REGION=us-west-2
+      - S3_PREFIX=yourprefix
+      - MYSQL_HOST=db
+      - MYSQL_PORT=3306
+      - MYSQL_USER=yourusername
+      - MYSQL_PASSWORD=yourusernamepassword
+      - MYSQLDUMP_DATABASE=bams
+      - "SCHEDULE=0 9 10 * * *"
+    networks:
+      - sakura_webnet

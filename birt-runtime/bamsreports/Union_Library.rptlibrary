@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="comments">Author: Brock Freeman 林宇翔</property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.7.0.v201706222054</property>
+    <property name="units">cm</property>
+    <property name="theme">Table_Standard</property>
+    <parameters>
+        <scalar-parameter name="__runtime" id="57">
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">prod</value>
+            </simple-property-list>
+            <list-property name="selectionList">
+                <structure>
+                    <property name="value">prod</property>
+                    <property name="label">Production</property>
+                </structure>
+                <structure>
+                    <property name="value">test</property>
+                    <property name="label">Test</property>
+                </structure>
+            </list-property>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">false</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="MySQL(ODA)_BAMS" id="59">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://localhost:33060/bams?autoReconnect=true&amp;characterEncoding=UTF8</property>
+            <property name="odaUser">birt</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">WVI5NjNrUGNXTVdRVll3aUJYSGc=</encrypted-property>
+            <property name="odaJndiName">java:comp/env/jdbc/MySqlDB</property>
+            <property name="OdaConnProfileName">MySQL(ODA)_BAMS_prod_localhost</property>
+            <property name="OdaConnProfileStorePath">BAMS_Connection_Profile</property>
+        </oda-data-source>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="BAMS-Docker" id="62">
+            <text-property name="displayName">BAMS MariaDB on Docker via localhost</text-property>
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://mariadb:3306/bams</property>
+            <property name="odaUser">birt</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">WVI5NjNrUGNXTVdRVll3aUJYSGc=</encrypted-property>
+            <property name="OdaConnProfileName">BAMS-container</property>
+            <property name="OdaConnProfileStorePath">BAMS_Docker-ConnectionProfile</property>
+        </oda-data-source>
+    </data-sources>
+    <themes>
+        <theme name="Table_Standard" id="4">
+            <styles>
+                <style name="style_body" id="5">
+                    <property name="fontFamily">"Lucida Grande"</property>
+                    <property name="fontSize">10pt</property>
+                    <structure name="dateTimeFormat">
+                        <property name="category">Custom</property>
+                        <property name="pattern">yy/MM/DD</property>
+                    </structure>
+                    <structure name="numberFormat">
+                        <property name="category">Currency</property>
+                        <property name="pattern">$#,##0;$(#,##0)</property>
+                    </structure>
+                    <property name="whiteSpace">normal</property>
+                </style>
+                <style name="style_tableHeader" id="6">
+                    <property name="backgroundColor">#CCCCCC</property>
+                    <property name="fontFamily">"Lucida Grande"</property>
+                    <property name="fontSize">12pt</property>
+                    <property name="borderBottomStyle">solid</property>
+                    <property name="borderBottomWidth">1px</property>
+                    <property name="borderTopStyle">solid</property>
+                    <property name="borderTopWidth">1px</property>
+                    <property name="paddingTop">2pt</property>
+                    <property name="paddingLeft">2pt</property>
+                    <property name="paddingBottom">2pt</property>
+                    <property name="paddingRight">2pt</property>
+                    <property name="textAlign">center</property>
+                    <property name="whiteSpace">nowrap</property>
+                </style>
+                <style name="style_tableDetail" id="7">
+                    <property name="fontFamily">"Lucida Grande"</property>
+                    <property name="fontSize">10pt</property>
+                    <property name="borderBottomColor">#CCCCCC</property>
+                    <property name="borderBottomStyle">dotted</property>
+                    <property name="borderBottomWidth">1px</property>
+                    <property name="borderLeftColor">#CCCCCC</property>
+                    <property name="borderLeftStyle">dotted</property>
+                    <property name="borderLeftWidth">1px</property>
+                    <property name="borderRightColor">#CCCCCC</property>
+                    <property name="borderRightStyle">dotted</property>
+                    <property name="borderRightWidth">1px</property>
+                    <property name="borderTopColor">#CCCCCC</property>
+                    <property name="borderTopStyle">dotted</property>
+                    <property name="borderTopWidth">1px</property>
+                    <property name="paddingTop">0em</property>
+                    <property name="paddingLeft">0em</property>
+                    <property name="paddingBottom">0em</property>
+                    <property name="paddingRight">0em</property>
+                    <structure name="numberFormat">
+                        <property name="category">Fixed</property>
+                        <property name="pattern">#,##0;(#,##0)</property>
+                    </structure>
+                    <property name="lineHeight">normal</property>
+                    <property name="orphans">3</property>
+                    <property name="whiteSpace">nowrap</property>
+                    <property name="widows">3</property>
+                </style>
+                <style name="style_tableDetail_NoBoarder" id="47">
+                    <property name="fontFamily">"Lucida Grande"</property>
+                    <property name="fontSize">10pt</property>
+                    <property name="borderBottomColor">#CCCCCC</property>
+                    <property name="borderBottomStyle">none</property>
+                    <property name="borderBottomWidth">1px</property>
+                    <property name="borderLeftColor">#CCCCCC</property>
+                    <property name="borderLeftStyle">none</property>
+                    <property name="borderLeftWidth">1px</property>
+                    <property name="borderRightColor">#CCCCCC</property>
+                    <property name="borderRightStyle">none</property>
+                    <property name="borderRightWidth">1px</property>
+                    <property name="borderTopColor">#CCCCCC</property>
+                    <property name="borderTopStyle">none</property>
+                    <property name="borderTopWidth">1px</property>
+                    <property name="paddingTop">0em</property>
+                    <property name="paddingLeft">0em</property>
+                    <property name="paddingBottom">0em</property>
+                    <property name="paddingRight">0em</property>
+                    <structure name="numberFormat">
+                        <property name="category">Fixed</property>
+                        <property name="pattern">#,##0;(#,##0)</property>
+                    </structure>
+                    <property name="lineHeight">normal</property>
+                    <property name="orphans">3</property>
+                    <property name="whiteSpace">nowrap</property>
+                    <property name="widows">3</property>
+                </style>
+            </styles>
+        </theme>
+    </themes>
+    <page-setup>
+        <simple-master-page name="A4 MasterPage" id="3">
+            <property name="comments">A4 Paper Size</property>
+            <property name="type">a4</property>
+            <property name="topMargin">1cm</property>
+            <property name="leftMargin">1cm</property>
+            <property name="bottomMargin">1cm</property>
+            <property name="rightMargin">1cm</property>
+            <property name="headerHeight">16pt</property>
+            <page-header>
+                <label name="NewLabel" id="32">
+                    <property name="fontSize">14pt</property>
+                    <property name="textAlign">center</property>
+                    <text-property name="text">嘉義縣音樂服務業職業工會</text-property>
+                </label>
+            </page-header>
+            <page-footer>
+                <grid name="NewGrid" id="34">
+                    <property name="width">100%</property>
+                    <column id="35"/>
+                    <column id="36"/>
+                    <column id="37"/>
+                    <row id="38">
+                        <cell id="39">
+                            <label name="NewLabel1" id="42">
+                                <text-property name="text">理事長</text-property>
+                            </label>
+                        </cell>
+                        <cell id="40">
+                            <label name="NewLabel2" id="43">
+                                <text-property name="text">常務監事</text-property>
+                            </label>
+                        </cell>
+                        <cell id="41">
+                            <label name="NewLabel3" id="44">
+                                <text-property name="text">經辦人</text-property>
+                            </label>
+                        </cell>
+                    </row>
+                </grid>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+</library>

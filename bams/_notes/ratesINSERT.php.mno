@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_duesHalfName" value="name:duesHalf;datatype:int,name:duesHalfName;datatype:string" />
+</info>

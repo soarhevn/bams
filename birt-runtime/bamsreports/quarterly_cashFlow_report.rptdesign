@@ -1,0 +1,2406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="comments">Author: Brock Freeman 費宇翔</property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.6.0.v201606072122</property>
+    <property name="units">mm</property>
+    <property name="theme">Union_Library.Table_Standard</property>
+    <property name="layoutPreference">auto layout</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">Union_Library.rptlibrary</property>
+            <property name="namespace">Union_Library</property>
+        </structure>
+    </list-property>
+    <parameters>
+        <scalar-parameter name="yearR" id="48">
+            <text-property name="promptText">Year</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">2018</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="quarterR" id="49">
+            <text-property name="promptText">Quarter</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">1</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="dateR" id="278">
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">2018-04-01</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="__runtime" id="383" extends="Union_Library.__runtime"/>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="MySQL(ODA)_BAMS" id="382"
+ extends="Union_Library.MySQL(ODA)_BAMS"/>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="BAMS-Docker" id="384"
+ extends="Union_Library.BAMS-Docker">
+            <text-property name="displayName">BAMS MariaDB on Docker via localhost</text-property>
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://db:3306/bams?characterEncoding=UTF8</property>
+            <property name="odaUser">birt</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">WVI5NjNrUGNXTVdRVll3aUJYSGc=</encrypted-property>
+            <property name="OdaConnProfileName">BAMS-container</property>
+            <property name="OdaConnProfileStorePath">BAMS_Docker-ConnectionProfile</property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="quarter_totals_by_account" id="47">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">accountID</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">accountID</text-property>
+                    <text-property name="heading">accountID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">accountName</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">accountName</text-property>
+                    <text-property name="heading">accountName</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">debit</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">debit</text-property>
+                    <text-property name="heading">debit</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">credit</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">credit</text-property>
+                    <text-property name="heading">credit</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">description</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">description</text-property>
+                    <text-property name="heading">description</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">param1</property>
+                    <property name="paramName">quarterR</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <property name="isOptional">false</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param2</property>
+                    <property name="paramName">yearR</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isOptional">false</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">accountID</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">accountName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">debit</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">credit</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">description</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">BAMS-Docker</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">accountID</property>
+                    <property name="nativeName">accountID</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">accountName</property>
+                    <property name="nativeName">accountName</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">debit</property>
+                    <property name="nativeName">debit</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">credit</property>
+                    <property name="nativeName">credit</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">description</property>
+                    <property name="nativeName">description</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[/* get sum of each of the accounts */
+SELECT t2.accountID AS accountID, 
+ CONCAT(aN2.accountName, ' - ', aT2.atName) AS accountName,
+ SUM(t1.debit) AS debit, SUM(t1.credit) AS credit, aN2.description
+FROM transactionsMaster
+LEFT JOIN transactions t1 USING (idMaster)
+LEFT JOIN transactions t2 USING (idMaster)
+LEFT JOIN accountNames aN2 ON t2.accountID = aN2.accountID
+LEFT JOIN accountType aT2 ON aN2.accountType = aT2.acctTypeID
+WHERE t1.accountID != t2.accountID
+AND t1.accountID = 40
+AND QUARTER(transDate) = ?
+AND YEAR(transDate) = ?
+GROUP BY t2.accountID
+ORDER BY code]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>accountID</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>5</design:nativeDataTypeCode>
+            <design:precision>6</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>accountID</design:label>
+            <design:formattingHints>
+              <design:displaySize>6</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>accountName</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>73</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>accountName</design:label>
+            <design:formattingHints>
+              <design:displaySize>73</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>debit</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>41</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>debit</design:label>
+            <design:formattingHints>
+              <design:displaySize>43</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>credit</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>41</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>credit</design:label>
+            <design:formattingHints>
+              <design:displaySize>43</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>description</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>description</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+    </design:resultSetDefinitions>
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>accountID</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>5</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>accountName</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>debit</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>credit</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>description</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="labor_ins_totals" id="140">
+            <list-property name="columnHints"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">param1</property>
+                    <property name="paramName">dateR</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param2</property>
+                    <property name="paramName">quarterR</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isOptional">false</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param3</property>
+                    <property name="paramName">yearR</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">3</property>
+                    <property name="isOptional">false</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">transMonth</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">debit</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">credit</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">BAMS-Docker</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">transMonth</property>
+                    <property name="nativeName">transMonth</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">debit</property>
+                    <property name="nativeName">debit</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">credit</property>
+                    <property name="nativeName">credit</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[(
+/* get beginning cash */
+SELECT '上月結餘' AS transMonth, IFNULL(SUM(debit),0) AS debit, IFNULL(SUM(credit),0) AS credit
+FROM transactionsMaster
+LEFT JOIN transactions USING (idMaster)
+WHERE accountID = 42
+AND transDate <= (DATE_SUB(?, INTERVAL 1 DAY))
+) UNION (
+/* get this quarters cash flow */
+SELECT CONCAT(CAST(MONTH(transDate) AS CHAR(2)), '月') AS transMonth, 
+IFNULL(SUM(debit),0) AS debit, IFNULL(SUM(credit),0) AS credit
+FROM transactionsMaster
+LEFT JOIN transactions USING (idMaster)
+WHERE accountID = 42
+AND QUARTER(transDate) = ?
+AND YEAR(transDate) = ?
+GROUP BY MONTH(transDate)
+ORDER BY code
+)]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>transMonth</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>4</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>transMonth</design:label>
+            <design:formattingHints>
+              <design:displaySize>4</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>debit</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>41</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>debit</design:label>
+            <design:formattingHints>
+              <design:displaySize>43</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>credit</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>41</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>credit</design:label>
+            <design:formattingHints>
+              <design:displaySize>43</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+    </design:resultSetDefinitions>
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>transMonth</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>debit</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>credit</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="med_ins_totals" id="188">
+            <list-property name="columnHints"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">param1</property>
+                    <property name="paramName">dateR</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param2</property>
+                    <property name="paramName">quarterR</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isOptional">false</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param3</property>
+                    <property name="paramName">yearR</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">3</property>
+                    <property name="isOptional">false</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">transMonth</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">debit</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">credit</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">BAMS-Docker</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">transMonth</property>
+                    <property name="nativeName">transMonth</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">debit</property>
+                    <property name="nativeName">debit</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">credit</property>
+                    <property name="nativeName">credit</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[(
+/* get beginning cash */
+SELECT '上月結餘' AS transMonth, IFNULL(SUM(debit),0) AS debit, IFNULL(SUM(credit),0) AS credit
+FROM transactionsMaster
+LEFT JOIN transactions USING (idMaster)
+WHERE accountID = 43
+AND transDate <= (DATE_SUB(?, INTERVAL 1 DAY))
+) UNION (
+/* get this quarters cash flow */
+SELECT CONCAT(CAST(MONTH(transDate) AS CHAR(2)), '月') AS transMonth, 
+IFNULL(SUM(debit),0) AS debit, IFNULL(SUM(credit),0) AS credit
+FROM transactionsMaster
+LEFT JOIN transactions USING (idMaster)
+WHERE accountID = 43
+AND QUARTER(transDate) = ?
+AND YEAR(transDate) = ?
+GROUP BY MONTH(transDate)
+ORDER BY code
+)]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>transMonth</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>4</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>transMonth</design:label>
+            <design:formattingHints>
+              <design:displaySize>4</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>debit</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>41</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>debit</design:label>
+            <design:formattingHints>
+              <design:displaySize>43</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>credit</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>41</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>credit</design:label>
+            <design:formattingHints>
+              <design:displaySize>43</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+    </design:resultSetDefinitions>
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>transMonth</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>debit</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>credit</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="newMem_totals" id="189">
+            <list-property name="columnHints"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">param1</property>
+                    <property name="paramName">dateR</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                </structure>
+                <structure>
+                    <property name="name">param2</property>
+                    <property name="paramName">quarterR</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isOptional">false</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param3</property>
+                    <property name="paramName">yearR</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">3</property>
+                    <property name="isOptional">false</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">transMonth</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">debit</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">credit</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">BAMS-Docker</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">transMonth</property>
+                    <property name="nativeName">transMonth</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">debit</property>
+                    <property name="nativeName">debit</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">credit</property>
+                    <property name="nativeName">credit</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[(
+/* get beginning cash */
+SELECT '上月結餘' AS transMonth, IFNULL(SUM(debit),0) AS debit, IFNULL(SUM(credit),0) AS credit
+FROM transactionsMaster
+LEFT JOIN transactions USING (idMaster)
+WHERE accountID = 44
+AND transDate <= (DATE_SUB(?, INTERVAL 1 DAY))
+) UNION (
+/* get this quarters cash flow */
+SELECT CONCAT(CAST(MONTH(transDate) AS CHAR(2)), '月') AS transMonth, 
+IFNULL(SUM(debit),0) AS debit, IFNULL(SUM(credit),0) AS credit
+FROM transactionsMaster
+LEFT JOIN transactions USING (idMaster)
+WHERE accountID = 44
+AND QUARTER(transDate) = ?
+AND YEAR(transDate) = ?
+GROUP BY MONTH(transDate)
+ORDER BY code
+)]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>transMonth</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>4</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>transMonth</design:label>
+            <design:formattingHints>
+              <design:displaySize>4</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>debit</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>41</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>debit</design:label>
+            <design:formattingHints>
+              <design:displaySize>43</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>credit</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>41</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>credit</design:label>
+            <design:formattingHints>
+              <design:displaySize>43</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+    </design:resultSetDefinitions>
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>transMonth</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>debit</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>credit</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="unionCashFlow" id="339">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">param1</property>
+                    <property name="paramName">dateR</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">1</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                </structure>
+                <structure>
+                    <property name="name">param2</property>
+                    <property name="paramName">dateR</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">2</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                </structure>
+                <structure>
+                    <property name="name">param3</property>
+                    <property name="paramName">dateR</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">3</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                </structure>
+                <structure>
+                    <property name="name">param4</property>
+                    <property name="paramName">dateR</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">4</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                </structure>
+                <structure>
+                    <property name="name">param5</property>
+                    <property name="paramName">dateR</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">5</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">beginningCash</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">cashIncome</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">cashExpense</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">BAMS-Docker</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">beginningCash</property>
+                    <property name="nativeName">beginningCash</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">cashIncome</property>
+                    <property name="nativeName">cashIncome</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">cashExpense</property>
+                    <property name="nativeName">cashExpense</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT * FROM
+(
+/* get beginning cash */
+SELECT IFNULL(SUM(debit),0) - IFNULL(SUM(credit),0) AS beginningCash
+FROM transactionsMaster
+LEFT JOIN transactions USING (idMaster)
+WHERE accountID = 40
+AND transDate <= (DATE_SUB(?, INTERVAL 1 DAY))
+) bg,
+(
+/* get month cash income */
+SELECT IFNULL(SUM(debit),0) AS cashIncome
+FROM transactionsMaster
+LEFT JOIN transactions USING (idMaster)
+WHERE accountID = 40
+AND QUARTER(transDate) = QUARTER(?)
+AND YEAR(transDate) = YEAR(?)
+) ci,
+(
+/* get month cash expense */
+SELECT (IFNULL(SUM(credit),0)) AS cashExpense
+FROM transactionsMaster
+LEFT JOIN transactions USING (idMaster)
+WHERE accountID = 40
+AND QUARTER(transDate) = QUARTER(?)
+AND YEAR(transDate) = YEAR(?)
+) ce]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>1.0</Version>
+  <design:DataSetParameters>
+    <design:parameterDefinitions>
+      <design:inOutMode>In</design:inOutMode>
+      <design:attributes>
+        <design:name></design:name>
+        <design:position>1</design:position>
+        <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+        <design:nullability>Nullable</design:nullability>
+        <design:uiHints/>
+      </design:attributes>
+      <design:inputAttributes>
+        <design:elementAttributes>
+          <design:optional>true</design:optional>
+          <design:masksValue>false</design:masksValue>
+          <design:uiHints>
+            <design:promptStyle>TextField</design:promptStyle>
+          </design:uiHints>
+        </design:elementAttributes>
+      </design:inputAttributes>
+    </design:parameterDefinitions>
+    <design:parameterDefinitions>
+      <design:inOutMode>In</design:inOutMode>
+      <design:attributes>
+        <design:name></design:name>
+        <design:position>2</design:position>
+        <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+        <design:nullability>Nullable</design:nullability>
+        <design:uiHints/>
+      </design:attributes>
+      <design:inputAttributes>
+        <design:elementAttributes>
+          <design:optional>true</design:optional>
+          <design:masksValue>false</design:masksValue>
+          <design:uiHints>
+            <design:promptStyle>TextField</design:promptStyle>
+          </design:uiHints>
+        </design:elementAttributes>
+      </design:inputAttributes>
+    </design:parameterDefinitions>
+    <design:parameterDefinitions>
+      <design:inOutMode>In</design:inOutMode>
+      <design:attributes>
+        <design:name></design:name>
+        <design:position>3</design:position>
+        <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+        <design:nullability>Nullable</design:nullability>
+        <design:uiHints/>
+      </design:attributes>
+      <design:inputAttributes>
+        <design:elementAttributes>
+          <design:optional>true</design:optional>
+          <design:masksValue>false</design:masksValue>
+          <design:uiHints>
+            <design:promptStyle>TextField</design:promptStyle>
+          </design:uiHints>
+        </design:elementAttributes>
+      </design:inputAttributes>
+    </design:parameterDefinitions>
+    <design:parameterDefinitions>
+      <design:inOutMode>In</design:inOutMode>
+      <design:attributes>
+        <design:name></design:name>
+        <design:position>4</design:position>
+        <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+        <design:nullability>Nullable</design:nullability>
+        <design:uiHints/>
+      </design:attributes>
+      <design:inputAttributes>
+        <design:elementAttributes>
+          <design:optional>true</design:optional>
+          <design:masksValue>false</design:masksValue>
+          <design:uiHints>
+            <design:promptStyle>TextField</design:promptStyle>
+          </design:uiHints>
+        </design:elementAttributes>
+      </design:inputAttributes>
+    </design:parameterDefinitions>
+    <design:parameterDefinitions>
+      <design:inOutMode>In</design:inOutMode>
+      <design:attributes>
+        <design:name></design:name>
+        <design:position>5</design:position>
+        <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+        <design:nullability>Nullable</design:nullability>
+        <design:uiHints/>
+      </design:attributes>
+      <design:inputAttributes>
+        <design:elementAttributes>
+          <design:optional>true</design:optional>
+          <design:masksValue>false</design:masksValue>
+          <design:uiHints>
+            <design:promptStyle>TextField</design:promptStyle>
+          </design:uiHints>
+        </design:elementAttributes>
+      </design:inputAttributes>
+    </design:parameterDefinitions>
+  </design:DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>beginningCash</design:name>
+            <design:position>1</design:position>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>42</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>beginningCash</design:label>
+            <design:formattingHints>
+              <design:displaySize>44</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>cashIncome</design:name>
+            <design:position>2</design:position>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>41</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>cashIncome</design:label>
+            <design:formattingHints>
+              <design:displaySize>43</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>cashExpense</design:name>
+            <design:position>3</design:position>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>41</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>cashExpense</design:label>
+            <design:formattingHints>
+              <design:displaySize>43</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+    </design:resultSetDefinitions>
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>beginningCash</design:name>
+            <design:position>1</design:position>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>42</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>beginningCash</design:label>
+            <design:formattingHints>
+              <design:displaySize>44</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>cashIncome</design:name>
+            <design:position>2</design:position>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>41</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>cashIncome</design:label>
+            <design:formattingHints>
+              <design:displaySize>43</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>cashExpense</design:name>
+            <design:position>3</design:position>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>41</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>cashExpense</design:label>
+            <design:formattingHints>
+              <design:displaySize>43</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+    </design:resultSetDefinitions>
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>beginningCash</design:name>
+            <design:position>1</design:position>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>cashIncome</design:name>
+            <design:position>2</design:position>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>cashExpense</design:name>
+            <design:position>3</design:position>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <page-setup>
+        <simple-master-page name="A4 MasterPage" id="4" extends="Union_Library.A4 MasterPage">
+            <overridden-values>
+                <ref-entry baseId="32" name="NewLabel" id="32"/>
+                <ref-entry baseId="34" name="NewGrid" id="34"/>
+                <ref-entry baseId="35" id="35"/>
+                <ref-entry baseId="36" id="36"/>
+                <ref-entry baseId="37" id="37"/>
+                <ref-entry baseId="38" id="38"/>
+                <ref-entry baseId="39" id="39"/>
+                <ref-entry baseId="42" name="NewLabel1" id="42"/>
+                <ref-entry baseId="40" id="40"/>
+                <ref-entry baseId="43" name="NewLabel2" id="43"/>
+                <ref-entry baseId="41" id="41"/>
+                <ref-entry baseId="44" name="NewLabel3" id="44"/>
+            </overridden-values>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid id="108">
+            <property name="textAlign">center</property>
+            <property name="width">100%</property>
+            <column id="109"/>
+            <row id="375">
+                <cell id="376">
+                    <property name="colSpan">1</property>
+                    <property name="rowSpan">1</property>
+                    <data id="378">
+                        <property name="fontSize">14pt</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">Main Title</property>
+                                <expression name="expression">params["yearR"] - 1911 + "年 " + params["quarterR"] + "季 (現金流動-存摺)"</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">Main Title</property>
+                    </data>
+                </cell>
+            </row>
+            <row id="135">
+                <cell id="136">
+                    <property name="colSpan">1</property>
+                    <property name="rowSpan">1</property>
+                    <label id="118">
+                        <property name="fontSize">14pt</property>
+                        <property name="textAlign">center</property>
+                        <text-property name="text">經常會費收支明細表</text-property>
+                    </label>
+                </cell>
+            </row>
+        </grid>
+        <grid id="101">
+            <property name="marginBottom">5cm</property>
+            <property name="pageBreakAfter">always</property>
+            <property name="width">100%</property>
+            <column id="102">
+                <property name="width">190mm</property>
+            </column>
+            <row id="103">
+                <cell id="104">
+                    <table id="60">
+                        <property name="width">189mm</property>
+                        <property name="dataSet">quarter_totals_by_account</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">accountID</property>
+                                <expression name="expression">dataSetRow["accountID"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">accountName</property>
+                                <expression name="expression">dataSetRow["accountName"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">debit</property>
+                                <expression name="expression">dataSetRow["debit"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">description</property>
+                                <expression name="expression">dataSetRow["description"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">debit Sum</property>
+                                <expression name="expression">Total.sum(row["debit"])</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">credit Sum</property>
+                                <expression name="expression">Total.sum(row["credit"])</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">credit</property>
+                                <expression name="expression">dataSetRow["credit"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                        </list-property>
+                        <property name="pageBreakInterval">0</property>
+                        <column id="90">
+                            <property name="width">40mm</property>
+                        </column>
+                        <column id="91">
+                            <property name="width">30mm</property>
+                        </column>
+                        <column id="92">
+                            <property name="width">30mm</property>
+                        </column>
+                        <column id="93">
+                            <property name="width">89mm</property>
+                        </column>
+                        <header>
+                            <row id="61">
+                                <property name="style">style_tableHeader</property>
+                                <cell id="64">
+                                    <property name="style">style_tableHeader</property>
+                                    <property name="textAlign">left</property>
+                                    <label id="125">
+                                        <text-property name="text">科目名稱</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="66">
+                                    <property name="style">style_tableHeader</property>
+                                    <label id="123">
+                                        <text-property name="text">借</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="68">
+                                    <property name="style">style_tableHeader</property>
+                                    <label id="124">
+                                        <text-property name="text">貸</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="70">
+                                    <property name="style">style_tableHeader</property>
+                                    <label id="126">
+                                        <property name="textAlign">center</property>
+                                        <text-property name="text">備註</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="72">
+                                <property name="style">style_tableDetail</property>
+                                <cell id="75">
+                                    <property name="style">style_tableDetail</property>
+                                    <data id="282">
+                                        <property name="dataSet">quarter_totals_by_account</property>
+                                        <list-property name="boundDataColumns">
+                                            <structure>
+                                                <property name="name">accountID</property>
+                                                <expression name="expression">dataSetRow["accountID"]</expression>
+                                                <property name="dataType">integer</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">accountName</property>
+                                                <expression name="expression">dataSetRow["accountName"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">debit</property>
+                                                <expression name="expression">dataSetRow["debit"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">credit</property>
+                                                <expression name="expression">dataSetRow["credit"]</expression>
+                                                <property name="dataType">decimal</property>
+                                            </structure>
+                                            <structure>
+                                                <property name="name">description</property>
+                                                <expression name="expression">dataSetRow["description"]</expression>
+                                                <property name="dataType">string</property>
+                                            </structure>
+                                        </list-property>
+                                        <property name="resultSetColumn">accountName</property>
+                                    </data>
+                                </cell>
+                                <cell id="77">
+                                    <property name="style">style_tableDetail</property>
+                                    <data id="280">
+                                        <property name="paddingRight">4pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">debit</property>
+                                    </data>
+                                </cell>
+                                <cell id="79">
+                                    <property name="style">style_tableDetail</property>
+                                    <data id="281">
+                                        <property name="paddingRight">4pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">credit</property>
+                                    </data>
+                                </cell>
+                                <cell id="81">
+                                    <property name="style">style_tableDetail</property>
+                                    <data id="82">
+                                        <property name="resultSetColumn">description</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="96">
+                                <cell id="97">
+                                    <property name="style">style_body</property>
+                                </cell>
+                                <cell id="98">
+                                    <property name="style">style_body</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                </cell>
+                                <cell id="99">
+                                    <property name="style">style_body</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                </cell>
+                                <cell id="100">
+                                    <property name="style">style_body</property>
+                                </cell>
+                            </row>
+                            <row id="83">
+                                <cell id="85">
+                                    <property name="style">style_body</property>
+                                    <property name="paddingLeft">20pt</property>
+                                    <label id="122">
+                                        <property name="textAlign">left</property>
+                                        <text-property name="text">合 計</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="86">
+                                    <property name="style">style_body</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <data id="94">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="paddingRight">4pt</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Currency</property>
+                                            <property name="pattern">$#,##0;$(#,##0)</property>
+                                        </structure>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">debit Sum</property>
+                                    </data>
+                                </cell>
+                                <cell id="87">
+                                    <property name="style">style_body</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <data id="95">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="paddingRight">4pt</property>
+                                        <structure name="numberFormat">
+                                            <property name="category">Currency</property>
+                                            <property name="pattern">$#,##0;$(#,##0)</property>
+                                        </structure>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">credit Sum</property>
+                                    </data>
+                                </cell>
+                                <cell id="88">
+                                    <property name="style">style_body</property>
+                                </cell>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+            <row id="360">
+                <property name="height">10mm</property>
+                <cell id="361"/>
+            </row>
+            <row id="105">
+                <cell id="106">
+                    <table id="312">
+                        <property name="width">90mm</property>
+                        <property name="dataSet">unionCashFlow</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">beginningCash</property>
+                                <expression name="expression">dataSetRow["beginningCash"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">cashIncome</property>
+                                <expression name="expression">dataSetRow["cashIncome"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">cashExpense</property>
+                                <expression name="expression">dataSetRow["cashExpense"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">netCashFlow</property>
+                                <expression name="expression">row["cashIncome"] - row["cashExpense"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">endMonthCash</property>
+                                <expression name="expression">row["netCashFlow"] + row["beginningCash"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                        </list-property>
+                        <property name="pageBreakInterval">0</property>
+                        <column id="325">
+                            <property name="width">50mm</property>
+                        </column>
+                        <column id="326">
+                            <property name="width">40mm</property>
+                        </column>
+                        <header>
+                            <row id="313">
+                                <cell id="314">
+                                    <property name="style">style_tableDetail</property>
+                                    <label id="343">
+                                        <text-property name="text">現金流動</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="315">
+                                    <property name="style">style_tableDetail</property>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="344">
+                                <cell id="345">
+                                    <property name="style">style_tableDetail</property>
+                                    <property name="paddingLeft">20pt</property>
+                                    <label id="347">
+                                        <text-property name="text">現金存入</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="346">
+                                    <property name="style">style_tableDetail</property>
+                                    <data id="353">
+                                        <property name="paddingRight">4pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">cashIncome</property>
+                                    </data>
+                                </cell>
+                            </row>
+                            <row id="348">
+                                <cell id="349">
+                                    <property name="style">style_tableDetail</property>
+                                    <property name="paddingLeft">20pt</property>
+                                    <label id="351">
+                                        <text-property name="text">現金領支</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="350">
+                                    <property name="style">style_tableDetail</property>
+                                    <data id="354">
+                                        <property name="paddingRight">4pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">cashExpense</property>
+                                    </data>
+                                </cell>
+                            </row>
+                            <row id="334">
+                                <cell id="335">
+                                    <property name="style">style_tableDetail</property>
+                                    <label id="338">
+                                        <text-property name="text">現金流動淨額增加或(減少)</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="336">
+                                    <property name="style">style_tableDetail</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <data id="355">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="paddingRight">4pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">netCashFlow</property>
+                                    </data>
+                                </cell>
+                            </row>
+                            <row id="317">
+                                <cell id="318">
+                                    <property name="style">style_tableDetail</property>
+                                    <label id="328">
+                                        <text-property name="text">上季底現金</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="319">
+                                    <property name="style">style_tableDetail</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <data id="357">
+                                        <property name="paddingRight">4pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">beginningCash</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="321">
+                                <cell id="322">
+                                    <property name="style">style_body</property>
+                                    <label id="359">
+                                        <text-property name="text">此季底現金</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="323">
+                                    <property name="style">style_body</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <data id="358">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="paddingRight">4pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">endMonthCash</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+            <row id="310">
+                <cell id="311"/>
+            </row>
+        </grid>
+        <grid id="127">
+            <property name="pageBreakBefore">always</property>
+            <property name="width">100%</property>
+            <column id="128"/>
+            <row id="129">
+                <cell id="130">
+                    <label id="139">
+                        <property name="fontSize">14pt</property>
+                        <property name="textAlign">center</property>
+                        <text-property name="text">勞保費 明細表</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="131">
+                <cell id="132">
+                    <table id="141">
+                        <property name="width">100%</property>
+                        <property name="dataSet">labor_ins_totals</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">transMonth</property>
+                                <expression name="expression">dataSetRow["transMonth"]</expression>
+                                <property name="dataType">any</property>
+                            </structure>
+                            <structure>
+                                <property name="name">debit</property>
+                                <expression name="expression">dataSetRow["debit"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">credit</property>
+                                <expression name="expression">dataSetRow["credit"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">running total - labor</property>
+                                <expression name="expression">row["debit"] - row["credit"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">debit total - labor</property>
+                                <expression name="expression">Total.sum(row["debit"])</expression>
+                                <property name="dataType">any</property>
+                            </structure>
+                            <structure>
+                                <property name="name">credit total - labor</property>
+                                <expression name="expression">Total.sum(row["credit"])</expression>
+                                <property name="dataType">any</property>
+                            </structure>
+                            <structure>
+                                <property name="name">total - labor</property>
+                                <expression name="expression">Total.sum(row["running total - labor"])</expression>
+                                <property name="dataType">any</property>
+                            </structure>
+                        </list-property>
+                        <property name="pageBreakInterval">50</property>
+                        <column id="160"/>
+                        <column id="161"/>
+                        <column id="162"/>
+                        <column id="166"/>
+                        <header>
+                            <row id="142">
+                                <property name="style">style_tableHeader</property>
+                                <cell id="143">
+                                    <property name="style">style_tableHeader</property>
+                                    <label id="167">
+                                        <text-property name="text">月份</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="145">
+                                    <property name="style">style_tableHeader</property>
+                                    <label id="168">
+                                        <text-property name="text">借</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="147">
+                                    <property name="style">style_tableHeader</property>
+                                    <label id="169">
+                                        <text-property name="text">貸</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="163">
+                                    <property name="style">style_tableHeader</property>
+                                    <label id="170">
+                                        <text-property name="text">合 計</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="149">
+                                <cell id="150">
+                                    <property name="style">style_tableDetail</property>
+                                    <data id="151">
+                                        <property name="resultSetColumn">transMonth</property>
+                                    </data>
+                                </cell>
+                                <cell id="152">
+                                    <property name="style">style_tableDetail</property>
+                                    <data id="153">
+                                        <property name="paddingRight">4pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">debit</property>
+                                    </data>
+                                </cell>
+                                <cell id="154">
+                                    <property name="style">style_tableDetail</property>
+                                    <data id="155">
+                                        <property name="paddingRight">4pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">credit</property>
+                                    </data>
+                                </cell>
+                                <cell id="164">
+                                    <property name="style">style_tableDetail</property>
+                                    <data id="171">
+                                        <property name="marginRight">0pt</property>
+                                        <property name="paddingRight">4pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">running total - labor</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="156">
+                                <cell id="157">
+                                    <property name="style">style_body</property>
+                                </cell>
+                                <cell id="158">
+                                    <property name="style">style_body</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                </cell>
+                                <cell id="159">
+                                    <property name="style">style_body</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                </cell>
+                                <cell id="165">
+                                    <property name="style">style_body</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                </cell>
+                            </row>
+                            <row id="172">
+                                <cell id="173">
+                                    <property name="style">style_body</property>
+                                    <property name="paddingLeft">20pt</property>
+                                    <label id="177">
+                                        <property name="textAlign">left</property>
+                                        <text-property name="text">合 計</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="174">
+                                    <property name="style">style_body</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <data id="178">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="paddingRight">4pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">debit total - labor</property>
+                                    </data>
+                                </cell>
+                                <cell id="175">
+                                    <property name="style">style_body</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <data id="179">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="paddingRight">4pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">credit total - labor</property>
+                                    </data>
+                                </cell>
+                                <cell id="176">
+                                    <property name="style">style_body</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <data id="180">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="paddingRight">4pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">total - labor</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+            <row id="133">
+                <property name="height">1cm</property>
+                <cell id="134"/>
+            </row>
+            <row id="185">
+                <cell id="186">
+                    <label id="187">
+                        <property name="fontSize">14pt</property>
+                        <property name="textAlign">center</property>
+                        <text-property name="text">健保費 明細表</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="183">
+                <cell id="184">
+                    <table id="190">
+                        <property name="width">100%</property>
+                        <property name="dataSet">med_ins_totals</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">transMonth</property>
+                                <expression name="expression">dataSetRow["transMonth"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">debit</property>
+                                <expression name="expression">dataSetRow["debit"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">credit</property>
+                                <expression name="expression">dataSetRow["credit"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">running total - med</property>
+                                <expression name="expression">row["debit"] - row["credit"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">debit total - med</property>
+                                <expression name="expression">Total.sum(row["debit"])</expression>
+                                <property name="dataType">any</property>
+                            </structure>
+                            <structure>
+                                <property name="name">credit total - med</property>
+                                <expression name="expression">Total.sum(row["credit"])</expression>
+                                <property name="dataType">any</property>
+                            </structure>
+                            <structure>
+                                <property name="name">total - med</property>
+                                <expression name="expression">Total.sum(row["running total - med"])</expression>
+                                <property name="dataType">any</property>
+                            </structure>
+                        </list-property>
+                        <property name="pageBreakInterval">50</property>
+                        <column id="209"/>
+                        <column id="210"/>
+                        <column id="211"/>
+                        <column id="222"/>
+                        <header>
+                            <row id="191">
+                                <property name="style">style_tableHeader</property>
+                                <cell id="192">
+                                    <property name="style">style_tableHeader</property>
+                                    <label id="259">
+                                        <text-property name="text">月份</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="194">
+                                    <property name="style">style_tableHeader</property>
+                                    <label id="261">
+                                        <text-property name="text">借</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="196">
+                                    <property name="style">style_tableHeader</property>
+                                    <label id="263">
+                                        <text-property name="text">貸</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="219">
+                                    <property name="style">style_tableHeader</property>
+                                    <label id="265">
+                                        <text-property name="text">合 計</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="198">
+                                <property name="style">style_tableDetail</property>
+                                <cell id="199">
+                                    <property name="style">style_tableDetail</property>
+                                    <data id="200">
+                                        <property name="resultSetColumn">transMonth</property>
+                                    </data>
+                                </cell>
+                                <cell id="201">
+                                    <property name="style">style_tableDetail</property>
+                                    <data id="202">
+                                        <property name="paddingRight">4pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">debit</property>
+                                    </data>
+                                </cell>
+                                <cell id="203">
+                                    <property name="style">style_tableDetail</property>
+                                    <data id="204">
+                                        <property name="paddingRight">4pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">credit</property>
+                                    </data>
+                                </cell>
+                                <cell id="220">
+                                    <property name="style">style_tableDetail</property>
+                                    <data id="267">
+                                        <property name="paddingRight">4pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">running total - med</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="205">
+                                <cell id="206">
+                                    <property name="style">style_body</property>
+                                </cell>
+                                <cell id="207">
+                                    <property name="style">style_body</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                </cell>
+                                <cell id="208">
+                                    <property name="style">style_body</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                </cell>
+                                <cell id="221">
+                                    <property name="style">style_body</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                </cell>
+                            </row>
+                            <row id="249">
+                                <cell id="250">
+                                    <property name="style">style_body</property>
+                                    <property name="paddingLeft">20pt</property>
+                                    <label id="276">
+                                        <property name="textAlign">left</property>
+                                        <text-property name="text">合 計</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="251">
+                                    <property name="style">style_body</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <data id="270">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="paddingRight">4pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">debit total - med</property>
+                                    </data>
+                                </cell>
+                                <cell id="252">
+                                    <property name="style">style_body</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <data id="271">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="paddingRight">4pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">credit total - med</property>
+                                    </data>
+                                </cell>
+                                <cell id="253">
+                                    <property name="style">style_body</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <data id="272">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="paddingRight">4pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">total - med</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+            <row id="181">
+                <property name="height">1cm</property>
+                <cell id="182"/>
+            </row>
+            <row id="212">
+                <cell id="213">
+                    <label id="218">
+                        <property name="fontSize">14pt</property>
+                        <property name="textAlign">center</property>
+                        <text-property name="text">互助金 明細表</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="214">
+                <cell id="215">
+                    <table id="223">
+                        <property name="width">100%</property>
+                        <property name="dataSet">newMem_totals</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">transMonth</property>
+                                <expression name="expression">dataSetRow["transMonth"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">debit</property>
+                                <expression name="expression">dataSetRow["debit"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">credit</property>
+                                <expression name="expression">dataSetRow["credit"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">running total - newMem</property>
+                                <expression name="expression">row["debit"] - row["credit"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">debit total - newMem</property>
+                                <expression name="expression">Total.sum(row["debit"])</expression>
+                                <property name="dataType">any</property>
+                            </structure>
+                            <structure>
+                                <property name="name">credit total - newMem</property>
+                                <expression name="expression">Total.sum(row["credit"])</expression>
+                                <property name="dataType">any</property>
+                            </structure>
+                            <structure>
+                                <property name="name">total - newMem</property>
+                                <expression name="expression">Total.sum(row["running total - newMem"])</expression>
+                                <property name="dataType">any</property>
+                            </structure>
+                        </list-property>
+                        <property name="pageBreakInterval">50</property>
+                        <column id="242"/>
+                        <column id="243"/>
+                        <column id="244"/>
+                        <column id="248"/>
+                        <header>
+                            <row id="224">
+                                <property name="style">style_tableHeader</property>
+                                <cell id="225">
+                                    <property name="style">style_tableHeader</property>
+                                    <label id="260">
+                                        <text-property name="text">月份</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="227">
+                                    <property name="style">style_tableHeader</property>
+                                    <label id="262">
+                                        <text-property name="text">借</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="229">
+                                    <property name="style">style_tableHeader</property>
+                                    <label id="264">
+                                        <text-property name="text">貸</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="245">
+                                    <property name="style">style_tableHeader</property>
+                                    <label id="266">
+                                        <text-property name="text">合 計</text-property>
+                                    </label>
+                                </cell>
+                            </row>
+                        </header>
+                        <detail>
+                            <row id="231">
+                                <property name="style">style_tableDetail</property>
+                                <cell id="232">
+                                    <property name="style">style_tableDetail</property>
+                                    <data id="233">
+                                        <property name="resultSetColumn">transMonth</property>
+                                    </data>
+                                </cell>
+                                <cell id="234">
+                                    <property name="style">style_tableDetail</property>
+                                    <data id="235">
+                                        <property name="paddingRight">4pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">debit</property>
+                                    </data>
+                                </cell>
+                                <cell id="236">
+                                    <property name="style">style_tableDetail</property>
+                                    <data id="237">
+                                        <property name="paddingRight">4pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">credit</property>
+                                    </data>
+                                </cell>
+                                <cell id="246">
+                                    <property name="style">style_tableDetail</property>
+                                    <data id="269">
+                                        <property name="paddingRight">4pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">running total - newMem</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </detail>
+                        <footer>
+                            <row id="238">
+                                <cell id="239">
+                                    <property name="style">style_body</property>
+                                </cell>
+                                <cell id="240">
+                                    <property name="style">style_body</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                </cell>
+                                <cell id="241">
+                                    <property name="style">style_body</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                </cell>
+                                <cell id="247">
+                                    <property name="style">style_body</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                </cell>
+                            </row>
+                            <row id="254">
+                                <cell id="255">
+                                    <property name="style">style_body</property>
+                                    <property name="paddingLeft">20pt</property>
+                                    <label id="277">
+                                        <property name="textAlign">left</property>
+                                        <text-property name="text">合 計</text-property>
+                                    </label>
+                                </cell>
+                                <cell id="256">
+                                    <property name="style">style_body</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <data id="273">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="paddingRight">4pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">debit total - newMem</property>
+                                    </data>
+                                </cell>
+                                <cell id="257">
+                                    <property name="style">style_body</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <data id="274">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="paddingRight">4pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">credit total - newMem</property>
+                                    </data>
+                                </cell>
+                                <cell id="258">
+                                    <property name="style">style_body</property>
+                                    <property name="borderBottomColor">#000000</property>
+                                    <property name="borderBottomStyle">solid</property>
+                                    <property name="borderBottomWidth">thin</property>
+                                    <property name="borderTopColor">#000000</property>
+                                    <property name="borderTopStyle">solid</property>
+                                    <property name="borderTopWidth">thin</property>
+                                    <data id="275">
+                                        <property name="fontWeight">bold</property>
+                                        <property name="paddingRight">4pt</property>
+                                        <property name="textAlign">right</property>
+                                        <property name="resultSetColumn">total - newMem</property>
+                                    </data>
+                                </cell>
+                            </row>
+                        </footer>
+                    </table>
+                </cell>
+            </row>
+            <row id="216">
+                <property name="height">1cm</property>
+                <cell id="217"/>
+            </row>
+        </grid>
+    </body>
+</report>

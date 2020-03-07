@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rsIncome" value="name:ID;datatype:int,name:idNumber;datatype:string,name:duesYear;datatype:year,name:duesHalfName;datatype:string" />
+</info>

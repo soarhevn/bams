@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="comments">Author: Brock Freeman 費宇翔</property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.7.0.v201706222054</property>
+    <property name="units">cm</property>
+    <property name="theme">Union_Library.Table_Standard</property>
+    <property name="layoutPreference">auto layout</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">Union_Library.rptlibrary</property>
+            <property name="namespace">Union_Library</property>
+        </structure>
+    </list-property>
+    <parameters>
+        <scalar-parameter name="__runtime" id="112" extends="Union_Library.__runtime"/>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="MySQL(ODA)_BAMS" id="111"
+ extends="Union_Library.MySQL(ODA)_BAMS"/>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="BAMS-Docker" id="113"
+ extends="Union_Library.BAMS-Docker">
+            <text-property name="displayName">BAMS MariaDB on Docker via localhost</text-property>
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://db:3306/bams?characterEncoding=UTF8</property>
+            <property name="odaUser">birt</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">WVI5NjNrUGNXTVdRVll3aUJYSGc=</encrypted-property>
+            <property name="OdaConnProfileName">BAMS-container</property>
+            <property name="OdaConnProfileStorePath">BAMS_Docker-ConnectionProfile</property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="accounts" id="42">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">accountName_5</property>
+                    <property name="alias">xAccountName</property>
+                    <property name="analysis">dimension</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">accountID</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">acctCODE</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">accountName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">atName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">xAccountName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">inactive</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">description</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">MySQL(ODA)_BAMS</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">accountID</property>
+                    <property name="nativeName">accountID</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">acctCODE</property>
+                    <property name="nativeName">acctCODE</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">accountName</property>
+                    <property name="nativeName">accountName</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">atName</property>
+                    <property name="nativeName">atName</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">accountName_5</property>
+                    <property name="nativeName">accountName</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">inactive</property>
+                    <property name="nativeName">inactive</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">description</property>
+                    <property name="nativeName">description</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT aN.accountID, aN.acctCODE, aN.accountName, aT.atName, 
+  xaN.accountName AS xAccountName, aN.inactive, aN.description
+FROM accountNames aN 
+INNER JOIN accountType aT ON aN.accountType = aT.acctTypeID
+LEFT JOIN accountNames xaN ON aN.xAccountID = xaN.accountID
+WHERE aN.inactive = 0
+AND aN.accountID > 0
+ORDER BY aN.acctCODE]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>1.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>accountID</design:name>
+            <design:position>1</design:position>
+            <design:nativeDataTypeCode>5</design:nativeDataTypeCode>
+            <design:precision>6</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>accountID</design:label>
+            <design:formattingHints>
+              <design:displaySize>6</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>acctCODE</design:name>
+            <design:position>2</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>acctCODE</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>accountName</design:name>
+            <design:position>3</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>accountName</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>atName</design:name>
+            <design:position>4</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>atName</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>xAccountName</design:name>
+            <design:position>5</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>xAccountName</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>inactive</design:name>
+            <design:position>6</design:position>
+            <design:nativeDataTypeCode>-7</design:nativeDataTypeCode>
+            <design:precision>1</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>inactive</design:label>
+            <design:formattingHints>
+              <design:displaySize>1</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>description</design:name>
+            <design:position>7</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>100</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>description</design:label>
+            <design:formattingHints>
+              <design:displaySize>100</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+    </design:resultSetDefinitions>
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>accountID</design:name>
+            <design:position>1</design:position>
+            <design:nativeDataTypeCode>5</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>acctCODE</design:name>
+            <design:position>2</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>accountName</design:name>
+            <design:position>3</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>atName</design:name>
+            <design:position>4</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>xAccountName</design:name>
+            <design:position>5</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>inactive</design:name>
+            <design:position>6</design:position>
+            <design:nativeDataTypeCode>-7</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:name>description</design:name>
+            <design:position>7</design:position>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+          </design:attributes>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <property name="type">a4</property>
+            <property name="topMargin">1cm</property>
+            <property name="leftMargin">1cm</property>
+            <property name="bottomMargin">1cm</property>
+            <property name="rightMargin">1cm</property>
+            <page-header>
+                <label id="106">
+                    <property name="fontSize">16pt</property>
+                    <property name="textAlign">center</property>
+                    <text-property name="text">會計科目圖表</text-property>
+                </label>
+            </page-header>
+            <page-footer>
+                <grid id="3">
+                    <property name="width">100%</property>
+                    <column id="4"/>
+                    <row id="5">
+                        <cell id="6">
+                            <text id="7">
+                                <property name="contentType">html</property>
+                                <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                            </text>
+                        </cell>
+                    </row>
+                </grid>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <table id="60">
+            <property name="width">100%</property>
+            <property name="dataSet">accounts</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">accountID</property>
+                    <expression name="expression">dataSetRow["accountID"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">acctCODE</property>
+                    <expression name="expression">dataSetRow["acctCODE"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">accountName</property>
+                    <expression name="expression">dataSetRow["accountName"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">atName</property>
+                    <expression name="expression">dataSetRow["atName"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">xAccountName</property>
+                    <expression name="expression">dataSetRow["xAccountName"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">inactive</property>
+                    <expression name="expression">dataSetRow["inactive"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">description</property>
+                    <expression name="expression">dataSetRow["description"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <property name="pageBreakInterval">0</property>
+            <column id="100">
+                <property name="textAlign">center</property>
+                <property name="width">2.5cm</property>
+            </column>
+            <column id="101">
+                <property name="width">4cm</property>
+            </column>
+            <column id="102">
+                <property name="textAlign">center</property>
+                <property name="width">2.5cm</property>
+            </column>
+            <column id="105">
+                <property name="width">10cm</property>
+            </column>
+            <header>
+                <row id="61">
+                    <property name="style">style_tableHeader</property>
+                    <property name="fontSize">14pt</property>
+                    <cell id="64">
+                        <label id="65">
+                            <text-property name="text">編碼</text-property>
+                        </label>
+                    </cell>
+                    <cell id="66">
+                        <label id="67">
+                            <text-property name="text">科目名稱</text-property>
+                        </label>
+                    </cell>
+                    <cell id="68">
+                        <label id="69">
+                            <text-property name="text">科目類別</text-property>
+                        </label>
+                    </cell>
+                    <cell id="74">
+                        <label id="75">
+                            <text-property name="text">備註</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="76">
+                    <property name="fontSize">12pt</property>
+                    <cell id="79">
+                        <data id="80">
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">acctCODE</property>
+                        </data>
+                    </cell>
+                    <cell id="81">
+                        <data id="82">
+                            <property name="resultSetColumn">accountName</property>
+                        </data>
+                    </cell>
+                    <cell id="83">
+                        <data id="84">
+                            <property name="resultSetColumn">atName</property>
+                        </data>
+                    </cell>
+                    <cell id="89">
+                        <data id="90">
+                            <property name="resultSetColumn">description</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+        </table>
+    </body>
+</report>

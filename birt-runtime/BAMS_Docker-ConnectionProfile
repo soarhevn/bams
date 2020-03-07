@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<DataTools.ServerProfiles version="1.0">
+    <profile autoconnect="No" desc="BAMS MariaDB on Docker via container networking" id="d8046f50-f962-11e7-8ac3-aef15b23b154" name="BAMS-container" providerID="org.eclipse.birt.report.data.oda.jdbc">
+        <baseproperties>
+            <property name="odaUser" value="birt"/>
+            <property name="metadataBidiFormatStr" value="ILYNN"/>
+            <property name="odaDriverClass" value="com.mysql.jdbc.Driver"/>
+            <property name="odaJndiName" value=""/>
+            <property name="odaPassword" value="actualodaPassword"/>
+            <property name="disabledMetadataBidiFormatStr" value=""/>
+            <property name="contentBidiFormatStr" value="ILYNN"/>
+            <property name="odaURL" value="jdbc:mysql://db:3306/bams?characterEncoding=UTF8"/>
+            <property name="disabledContentBidiFormatStr" value=""/>
+        </baseproperties>
+    </profile>
+    <profile autoconnect="No" desc="BAMS MariaDB on Docker via localhost" id="b74eb770-f962-11e7-8ac3-aef15b23b154" name="BAMS-localhost" providerID="org.eclipse.birt.report.data.oda.jdbc">
+        <baseproperties>
+            <property name="odaUser" value="birt"/>
+            <property name="metadataBidiFormatStr" value="ILYNN"/>
+            <property name="odaDriverClass" value="com.mysql.jdbc.Driver"/>
+            <property name="odaJndiName" value=""/>
+            <property name="odaPassword" value="actualodaPassword"/>
+            <property name="disabledMetadataBidiFormatStr" value=""/>
+            <property name="contentBidiFormatStr" value="ILYNN"/>
+            <property name="odaURL" value="jdbc:mysql://localhost:3306/bams?characterEncoding=UTF8"/>
+            <property name="disabledContentBidiFormatStr" value=""/>
+        </baseproperties>
+    </profile>
+</DataTools.ServerProfiles>
